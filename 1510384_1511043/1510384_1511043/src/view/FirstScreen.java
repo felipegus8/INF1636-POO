@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JFrame;
 
+
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -32,10 +33,10 @@ public class FirstScreen extends JFrame {
 		
 		this.g= g;
 		
-		onePlayer.addActionListener(new ButtonListener(g,1));
-		twoPlayers.addActionListener(new ButtonListener(g,2));
-		threePlayers.addActionListener(new ButtonListener(g,3));
-		fourPlayers.addActionListener(new ButtonListener(g,4));
+		onePlayer.addActionListener(new ButtonListener(g,1,this));
+		twoPlayers.addActionListener(new ButtonListener(g,2,this));
+		threePlayers.addActionListener(new ButtonListener(g,3,this));
+		fourPlayers.addActionListener(new ButtonListener(g,4,this));
 		
 		this.add(p);
 		
