@@ -44,9 +44,24 @@ public class GamblerPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		posX = 0;
+		posY = 40;
 		for(Image img: cardImgs) {
 			g.drawImage(img, posX, posY, 50, 50, null);
-			posX += 50;
+			System.out.println("size xaxando " + this.getSize().width);
+			System.out.println("POSX:" + posX);
+			int mito = this.getSize().width;
+			if (mito < posX){
+				System.out.println("POSX:" + posX);
+				System.out.println("MITO:" + mito);
+				System.out.println("POSY:" + posY);
+				posX = 0;
+				posY += 50;
+			}
+			else {
+				System.out.println("POSX:" + posX);
+			//	posY = 40;
+				posX += 50;
+			}
 		}
 		
 		
