@@ -36,7 +36,7 @@ public class TableFrame extends JFrame {
 		this.add(p);
 		setSize(LARG_DEFAULT,ALT_DEFAULT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("Bla");
+		this.setTitle("Table");
 		this.setVisible(true);
 	}
 	

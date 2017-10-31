@@ -47,18 +47,12 @@ public class GamblerPanel extends JPanel {
 		posY = 40;
 		for(Image img: cardImgs) {
 			g.drawImage(img, posX, posY, 50, 50, null);
-			System.out.println("size xaxando " + this.getSize().width);
-			System.out.println("POSX:" + posX);
-			int mito = this.getSize().width;
-			if (mito < posX){
-				System.out.println("POSX:" + posX);
-				System.out.println("MITO:" + mito);
-				System.out.println("POSY:" + posY);
+			int panelSize = this.getSize().width;
+			if (panelSize < posX){
 				posX = 0;
 				posY += 50;
 			}
 			else {
-				System.out.println("POSX:" + posX);
 			//	posY = 40;
 				posX += 50;
 			}
