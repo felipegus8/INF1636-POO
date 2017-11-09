@@ -17,4 +17,8 @@ public abstract class Player {
 	public void addPoint(int numPoints) {
 		this.totalPointCount += numPoints;
 	}
+	
+	public int getTotalPointCount() {
+		return this.totalPointCount;
+	}
 }

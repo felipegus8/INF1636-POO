@@ -1,6 +1,8 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 import controller.GamblerController;
 
 import java.awt.event.ActionEvent;
@@ -14,7 +16,8 @@ import javax.swing.JButton;
 public class GamblerFrame extends JFrame{	
 	JButton hit = new JButton("HIT");
 	JButton stand = new JButton("STAND");
-	
+	JLabel cardValue = new JLabel("0");
+	JLabel stopHit = new JLabel("BUSTED");
 	public GamblerPanel p = new GamblerPanel();
 	public GamblerController gc = null;
 	public final int LARG_DEFAULT=300; public final int ALT_DEFAULT=300;
@@ -26,8 +29,13 @@ public class GamblerFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				if(!gc.checkIfPlayerWasBusted()) {
 				gc.hit();
+				cardValue.setText(String.valueOf(gc.totalPoints()));
+				}
+				if (gc.checkIfPlayerWasBusted()) { 
+					p.add(stopHit);
+			}
 			}
 			
 		});
@@ -45,6 +53,7 @@ public class GamblerFrame extends JFrame{
 		this.add(p);
 		p.add(hit);
 		p.add(stand);
+		p.add(cardValue);
 		this.setTitle("teste");
 		this.setVisible(true);
 	}

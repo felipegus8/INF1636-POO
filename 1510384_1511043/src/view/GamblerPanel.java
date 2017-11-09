@@ -20,10 +20,9 @@ public class GamblerPanel extends JPanel {
 	public ArrayList<Image> cardImgs = new ArrayList<Image>();
 	
 	public GamblerPanel() {
-		
 	}
 	
-	public void drawCard(String cardImageStr) {
+	public void paintCard(String cardImageStr) {
 		Graphics g = this.getGraphics();
 		Image i = null;
 		

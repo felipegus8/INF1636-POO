@@ -55,10 +55,21 @@ public class GamblerController {
 			break;
 			
 		}
-		gf.p.drawCard(cardImageStr);
+		gf.p.paintCard(cardImageStr);
 		g.addPoint(drawed.cardNumber);
 		g.playerCards.add(drawed);
 		gf.repaint();
-		
 	}
+	public int totalPoints() {
+		return this.g.getTotalPointCount();
+	}
+	
+	public boolean checkIfPlayerWasBusted () {
+		if (this.totalPoints() > 21) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 }
