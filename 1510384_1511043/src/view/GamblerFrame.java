@@ -21,7 +21,7 @@ public class GamblerFrame extends JFrame{
 	public GamblerPanel p = new GamblerPanel();
 	public GamblerController gc = null;
 	public final int LARG_DEFAULT=300; public final int ALT_DEFAULT=300;
-	
+	public boolean isStanded = false;
 	public GamblerFrame(double x, double y,double posX, double posY) {
 		setSize((int) x,(int) y);
 		Point po = new Point((int) posX,(int) posY);
@@ -29,7 +29,8 @@ public class GamblerFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(!gc.checkIfPlayerWasBusted()) {
+				
+				if(!gc.checkIfPlayerWasBusted() && (!isStanded)) {
 				gc.hit();
 				cardValue.setText(String.valueOf(gc.totalPoints()));
 				}
@@ -44,7 +45,7 @@ public class GamblerFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+			      isStanded = true;
 				
 			}
 			
