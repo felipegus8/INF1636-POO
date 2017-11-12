@@ -31,6 +31,7 @@ public class GamblerFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				if(!gc.checkIfPlayerWasBusted() && (!isStanded)) {
+				hit.setEnabled(true);
 				gc.hit();
 				System.out.println(gc.checkIfPlayerHasAce());
 				System.out.println(!gc.checkIfAceMaxBusts());
@@ -40,9 +41,11 @@ public class GamblerFrame extends JFrame{
 				else {	
 					cardValue.setText(String.valueOf(gc.totalPoints()) + "/" + String.valueOf(gc.totalPointsWithAce()));
 				}
-				}
+			}
 				if (gc.checkIfPlayerWasBusted()) { 
 					p.add(stopHit);
+					hit.setEnabled(false);
+					stand.setEnabled(false);
 			}
 			}
 			
@@ -56,6 +59,8 @@ public class GamblerFrame extends JFrame{
 					  cardValue.setText(String.valueOf(gc.totalPointsWithAce()));
 				  }
 			      isStanded = true;
+			      stand.setEnabled(false);
+			      hit.setEnabled(false);
 				
 			}
 			

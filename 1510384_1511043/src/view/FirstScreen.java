@@ -9,9 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import controller.GameController;
 import other.ButtonListener;
+import javax.swing.JLabel;
 
 public class FirstScreen extends JFrame {
-	
+	JLabel choose = new JLabel("Choose the Number of Players\n");
 	JButton onePlayer = new JButton("1");
 	JButton twoPlayers = new JButton("2");
 	JButton threePlayers = new JButton("3");
@@ -26,6 +27,7 @@ public class FirstScreen extends JFrame {
 	public FirstScreen(GameController g) {
 		
 		setSize(LARG_DEFAULT,ALT_DEFAULT);
+		p.add(choose);
 		p.add(onePlayer);
 		p.add(twoPlayers);
 		p.add(threePlayers);
