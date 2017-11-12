@@ -32,7 +32,14 @@ public class GamblerFrame extends JFrame{
 				
 				if(!gc.checkIfPlayerWasBusted() && (!isStanded)) {
 				gc.hit();
-				cardValue.setText(String.valueOf(gc.totalPoints()));
+				System.out.println(gc.checkIfPlayerHasAce());
+				System.out.println(!gc.checkIfAceMaxBusts());
+				if (!gc.checkIfPlayerHasAce() || gc.checkIfAceMaxBusts()) {
+					cardValue.setText(String.valueOf(gc.totalPoints()));
+				}
+				else {	
+					cardValue.setText(String.valueOf(gc.totalPoints()) + "/" + String.valueOf(gc.totalPointsWithAce()));
+				}
 				}
 				if (gc.checkIfPlayerWasBusted()) { 
 					p.add(stopHit);
@@ -45,6 +52,9 @@ public class GamblerFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				  if (gc.checkIfPlayerHasAce()) {
+					  cardValue.setText(String.valueOf(gc.totalPointsWithAce()));
+				  }
 			      isStanded = true;
 				
 			}

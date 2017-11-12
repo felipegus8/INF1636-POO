@@ -55,13 +55,26 @@ public class GamblerController {
 			break;
 			
 		}
+		
 		gf.p.paintCard(cardImageStr);
-		g.addPoint(drawed.cardNumber);
+		if (drawed.cardNumber == 1) {
+		g.addPoint(drawed.cardNumber,true);
+		}
+		else {
+			if (drawed.cardNumber > 10) {
+				drawed.cardNumber = 10;
+			}
+			g.addPoint(drawed.cardNumber, false);
+		}
 		g.playerCards.add(drawed);
 		gf.repaint();
 	}
 	public int totalPoints() {
 		return this.g.getTotalPointCount();
+	}
+	
+	public int totalPointsWithAce() {
+		return this.g.getTotalPointCountWithAce();
 	}
 	
 	public boolean checkIfPlayerWasBusted () {
@@ -71,5 +84,18 @@ public class GamblerController {
 		return false;
 	}
 	
+	public boolean checkIfPlayerHasAce() {
+		if (g.getTotalPointCount() != g.getTotalPointCountWithAce()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean checkIfAceMaxBusts() {
+		if (g.getTotalPointCountWithAce() > 21) {
+			return true;
+		}
+		return false;
+	}
 	
 }
