@@ -55,8 +55,11 @@ public class GamblerFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				  if (gc.checkIfPlayerHasAce()) {
+				  if (gc.checkIfPlayerHasAce() && !gc.checkIfAceMaxBusts()) {
 					  cardValue.setText(String.valueOf(gc.totalPointsWithAce()));
+				  }
+				  else {
+					  cardValue.setText(String.valueOf(gc.totalPoints()));
 				  }
 			      isStanded = true;
 			      stand.setEnabled(false);
