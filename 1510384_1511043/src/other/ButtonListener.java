@@ -21,9 +21,9 @@ public class ButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		fs.setVisible(false);
-		g.generateFrames(this.numPlayers);
 		g.insertCards();
 		g.shuffleCards();
+		g.generateFrames(this.numPlayers);
 	}
 
 }

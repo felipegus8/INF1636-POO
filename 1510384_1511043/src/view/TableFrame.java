@@ -13,10 +13,12 @@ import java.io.IOException;
 public class TableFrame extends JFrame {
 	//Graphics2D g;
 	Image i;
-	TableFramePanel p = null;
+	public TableFramePanel p = null;
 	int posX, posY;
 	
 	public final int LARG_DEFAULT=891; public final int ALT_DEFAULT=400;
+	
+	
 	
 	public TableFrame(double posX,double posY) {
 		

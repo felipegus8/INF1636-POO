@@ -14,8 +14,8 @@ import java.awt.Point;
 import javax.swing.JButton;
 
 public class GamblerFrame extends JFrame{	
-	JButton hit = new JButton("HIT");
-	JButton stand = new JButton("STAND");
+	public JButton hit = new JButton("HIT");
+	public JButton stand = new JButton("STAND");
 	JLabel cardValue = new JLabel("0");
 	JLabel stopHit = new JLabel("BUSTED");
 	public GamblerPanel p = new GamblerPanel();
@@ -64,6 +64,8 @@ public class GamblerFrame extends JFrame{
 			      isStanded = true;
 			      stand.setEnabled(false);
 			      hit.setEnabled(false);
+			      
+			      
 				
 			}
 			

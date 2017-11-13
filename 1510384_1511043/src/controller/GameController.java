@@ -11,6 +11,7 @@ import java.util.Collections;
 public class GameController {
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private TableFrame tf;
+	private DealerController dc;
 	private int numPlayers;
 	private ArrayList<GamblerFrame> pfs = new ArrayList<GamblerFrame>();
 	private ArrayList<GamblerController> gcs = new ArrayList<GamblerController>();
@@ -71,6 +72,7 @@ public class GameController {
 		double totalHeight = 0.0;
 		
 		tf = new TableFrame(0,height + 30);
+		dc = new DealerController(new Dealer(),tf,this);
 		
 		for(int i=0;i<numPlayers;i++) {
 			GamblerFrame gf = new GamblerFrame(width,height,totalWidth,totalHeight);
@@ -81,12 +83,25 @@ public class GameController {
 			totalWidth += width;
 		}
 		
+		blockPlayers();
 		
-		
+	}
+	
+	private void blockPlayers() {
+		for(int i=0;i<numPlayers;i++) {
+			GamblerController c = gcs.get(i);
+			if(this.currentPlayer != c.g.numGambler) {
+				c.blockHitAndStand();
+			} else {
+				System.out.println("passei aqui e " + c.g.numGambler);
+				c.unblockHitAndStand();
+			}
+		}
 	}
 	
 	public void decideWhoPlaysNext() {
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
+		blockPlayers();
 	}
 	
 	

@@ -2,7 +2,7 @@ package model;
 
 public class Gambler extends Player{
 	int totalMoneyAvailable;
-	int numGambler;
+	public int numGambler;
 	
 	public Gambler(int numGambler) {
 		this.numGambler = numGambler;

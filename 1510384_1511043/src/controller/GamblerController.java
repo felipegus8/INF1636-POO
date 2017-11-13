@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.EmptyStackException;
+
 import model.Card;
 import model.Gambler;
 import view.GamblerFrame;
@@ -92,10 +94,24 @@ public class GamblerController {
 	}
 	
 	public boolean checkIfAceMaxBusts() {
+		
 		if (g.getTotalPointCountWithAce() > 21) {
+			gc.decideWhoPlaysNext();
 			return true;
 		}
 		return false;
+	}
+	
+	public void unblockHitAndStand() {
+		gf.hit.setEnabled(true);
+		gf.stand.setEnabled(true);
+		
+	}
+	
+	public void blockHitAndStand() {
+		gf.hit.setEnabled(false);
+		gf.stand.setEnabled(false);
+		
 	}
 	
 }

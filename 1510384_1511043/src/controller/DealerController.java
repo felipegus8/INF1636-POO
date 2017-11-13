@@ -15,54 +15,85 @@ public class DealerController {
 		this.d = d;
 		this.tf = tf;
 		this.gc = gc;
+		drawCardToDealer();
+		paintCardOnScreen("deck1");
+		hit();
+	}
+	
+
+	
+	private Card drawCardToDealer() {
+		Card drawed = gc.drawCard();
+
+		if (drawed.cardNumber == 1) {
+			d.addPoint(drawed.cardNumber,true);
+			}
+			else {
+				if (drawed.cardNumber > 10) {
+					drawed.cardNumber = 10;
+				}
+				d.addPoint(drawed.cardNumber, false);
+			}
+			d.playerCards.add(drawed);
+			
+			return drawed;
+		
+	}
+	
+	private String getImageString(Card drawed) {
+		String cardImageStr = "";
+		if(drawed.cardNumber > 9 || drawed.cardNumber == 1) {
+			switch(drawed.cardNumber) {
+				case 10:
+					cardImageStr += "t";
+					break;
+				case 11:
+					cardImageStr += "j";
+					break;
+				case 12:
+					cardImageStr += "q";
+					break;
+				case 13:
+					cardImageStr += "k";
+					break;
+				case 1:
+					cardImageStr += "a";
+					break;
+			}
+		} else {
+			cardImageStr += Integer.toString(drawed.cardNumber);
+		}
+		
+		switch(drawed.suit) { 
+		case clubs:
+			cardImageStr += "c";
+			break;
+		case hearts:
+			cardImageStr += "h";
+			break;
+		case spades:
+			cardImageStr += "s";
+			break;
+		case diamonds:
+			cardImageStr += "d";
+			break;
+			
+		}
+		return cardImageStr;
+		
+	}
+	
+	private void paintCardOnScreen(String cardImageStr) {
+		
+		tf.p.paintCard(cardImageStr);
+		tf.repaint();
+		
 	}
 	
 	public void hit() {
-		if (d.willHit()) {
-			Card drawed = gc.drawCard();
-			String cardImageStr = "";
-			if(drawed.cardNumber > 9 || drawed.cardNumber == 1) {
-				switch(drawed.cardNumber) {
-					case 10:
-						cardImageStr += "t";
-						break;
-					case 11:
-						cardImageStr += "j";
-						break;
-					case 12:
-						cardImageStr += "q";
-						break;
-					case 13:
-						cardImageStr += "k";
-						break;
-					case 1:
-						cardImageStr += "a";
-						break;
-				}
-			} else {
-				cardImageStr += Integer.toString(drawed.cardNumber);
-			}
-			
-			switch(drawed.suit) { 
-			case clubs:
-				cardImageStr += "c";
-				break;
-			case hearts:
-				cardImageStr += "h";
-				break;
-			case spades:
-				cardImageStr += "s";
-				break;
-			case diamonds:
-				cardImageStr += "d";
-				break;
-				
-			}
-			//TODO:Ajeitar isso aqui
-//			gf.p.paintCard(cardImageStr);
-//			g.addPoint(drawed.cardNumber);
-//			g.playerCards.add(drawed);
-//			gf.repaint();
-		}
+		Card drawed = drawCardToDealer();
+		String imageString = getImageString(drawed);
+		paintCardOnScreen(imageString);
+		
 	}
 }
