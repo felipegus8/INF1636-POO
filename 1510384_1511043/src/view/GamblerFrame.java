@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.GamblerController;
+import controller.GameController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,10 +17,11 @@ import javax.swing.JButton;
 public class GamblerFrame extends JFrame{	
 	public JButton hit = new JButton("HIT");
 	public JButton stand = new JButton("STAND");
-	JLabel cardValue = new JLabel("0");
+	public JLabel cardValue = new JLabel("0");
 	JLabel stopHit = new JLabel("BUSTED");
 	public GamblerPanel p = new GamblerPanel();
 	public GamblerController gc = null;
+	public GameController g = null;
 	public final int LARG_DEFAULT=300; public final int ALT_DEFAULT=300;
 	public boolean isStanded = false;
 	public GamblerFrame(double x, double y,double posX, double posY) {
@@ -61,6 +63,8 @@ public class GamblerFrame extends JFrame{
 				  else {
 					  cardValue.setText(String.valueOf(gc.totalPoints()));
 				  }
+				  
+				  gc.decideWhoPlaysNext();
 			      isStanded = true;
 			      stand.setEnabled(false);
 			      hit.setEnabled(false);

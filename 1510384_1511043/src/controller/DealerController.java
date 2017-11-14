@@ -83,6 +83,14 @@ public class DealerController {
 		
 	}
 	
+	public void turnCard() {
+		tf.p.clearImgs();
+		for(Card c: d.playerCards) {
+			String imgString = getImageString(c);
+			paintCardOnScreen(imgString);
+		}
+	}
+	
 	private void paintCardOnScreen(String cardImageStr) {
 		
 		tf.p.paintCard(cardImageStr);

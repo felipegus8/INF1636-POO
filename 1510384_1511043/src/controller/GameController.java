@@ -12,6 +12,7 @@ public class GameController {
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private TableFrame tf;
 	private DealerController dc;
+	private int numRound = 1;
 	private int numPlayers;
 	private ArrayList<GamblerFrame> pfs = new ArrayList<GamblerFrame>();
 	private ArrayList<GamblerController> gcs = new ArrayList<GamblerController>();
@@ -93,14 +94,26 @@ public class GameController {
 			if(this.currentPlayer != c.g.numGambler) {
 				c.blockHitAndStand();
 			} else {
-				System.out.println("passei aqui e " + c.g.numGambler);
-				c.unblockHitAndStand();
+				if(c.isStanded() == false) {
+					c.unblockHitAndStand();
+				} else {
+					decideWhoPlaysNext();
+				}
 			}
 		}
 	}
 	
 	public void decideWhoPlaysNext() {
+		System.out.println("current " + currentPlayer);
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
+		/* a round has passed*/
+		if(this.currentPlayer  == 1) {
+			if(this.numRound == 1) {
+				dc.turnCard();
+			}
+			this.numRound++;
+			
+		}
 		blockPlayers();
 	}
 	

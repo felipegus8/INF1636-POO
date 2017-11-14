@@ -10,13 +10,18 @@ import javax.swing.JPanel;
 
 public class TableFramePanel extends JPanel {
 	Image i = null;
-	public ArrayList<Image> cardImgs = new ArrayList<Image>();
+	private ArrayList<Image> cardImgs = new ArrayList<Image>();
 	private int posX = 0, posY = 60;
 	
 	
 	public TableFramePanel(Image i) {
 		this.i = i;
 	}
+		
+	public void clearImgs() {
+		cardImgs.clear();
+	}
+	
 	public void paintCard(String cardImageStr) {
 		Graphics g = this.getGraphics();
 		Image i = null;
@@ -30,8 +35,6 @@ public class TableFramePanel extends JPanel {
 			System.exit(1);
 		}
 		cardImgs.add(i);
-		//g.drawImage(i, posX, posY, 50, 50, null);
-		//posX += 50;
 	
 	}
 

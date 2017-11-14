@@ -15,6 +15,14 @@ public class GamblerController {
 		this.g = g;
 		this.gf = gf;
 		this.gc = gc;
+		
+		hit();
+		hit();
+		if(checkIfPlayerHasAce()) {
+			gf.cardValue.setText(Integer.toString(totalPointsWithAce()));
+		} else {
+			gf.cardValue.setText(Integer.toString(totalPoints()));		
+		}
 	}
 	
 	public void hit() {
@@ -96,7 +104,7 @@ public class GamblerController {
 	public boolean checkIfAceMaxBusts() {
 		
 		if (g.getTotalPointCountWithAce() > 21) {
-			gc.decideWhoPlaysNext();
+			decideWhoPlaysNext();
 			return true;
 		}
 		return false;
@@ -112,6 +120,15 @@ public class GamblerController {
 		gf.hit.setEnabled(false);
 		gf.stand.setEnabled(false);
 		
+	}
+	
+	public void decideWhoPlaysNext() {
+		gc.decideWhoPlaysNext();
+		
+	}
+	
+	public Boolean isStanded() {
+		return gf.isStanded;
 	}
 	
 }
