@@ -103,6 +103,35 @@ public class GameController {
 		}
 	}
 	
+	void checkWinner() {
+		for(int i=0;i<numPlayers;i++) {
+			GamblerController c = gcs.get(i);
+			if(dc.checkIfPlayerWasBusted() && c.checkIfPlayerWasBusted()) {
+				//draw
+				System.out.println("draw 1");
+			} else if(dc.checkIfPlayerWasBusted()) {
+				System.out.println("player wins 1");
+				//player wins
+			} else if(c.checkIfPlayerWasBusted()){
+				//dealer wins
+				System.out.println("dealer wins 1");
+			} else {
+				if(c.totalPoints() > dc.totalPoints()) {
+					//player wins
+					System.out.println("player wins 2");
+				} else if(c.totalPoints() < dc.totalPoints()) {
+					//dealer wins
+					System.out.println("dealer wins 2");
+				} else {
+					System.out.println("draw 2");
+					//draw
+				} 
+			}
+			
+			
+		}
+	}
+	
 	public void decideWhoPlaysNext() {
 		System.out.println("current " + currentPlayer);
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
@@ -112,6 +141,11 @@ public class GameController {
 				dc.turnCard();
 			}
 			this.numRound++;
+			
+			if(this.numRound == 2) {
+				while(dc.hitOrStand());
+				checkWinner();
+			}
 			
 		}
 		blockPlayers();

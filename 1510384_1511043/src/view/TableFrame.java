@@ -2,6 +2,7 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,6 +15,9 @@ public class TableFrame extends JFrame {
 	//Graphics2D g;
 	Image i;
 	public TableFramePanel p = null;
+	public JLabel cardValue = new JLabel("0");
+
+	
 	int posX, posY;
 	
 	public final int LARG_DEFAULT=891; public final int ALT_DEFAULT=400;
@@ -40,6 +44,8 @@ public class TableFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Table");
 		this.setVisible(true);
+		this.p.setLocation(100,50);
+		this.p.add(cardValue);
 	}
 	
 }

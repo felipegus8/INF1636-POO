@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.EmptyStackException;
 
 import model.Card;
 import model.Gambler;

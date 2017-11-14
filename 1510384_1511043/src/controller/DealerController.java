@@ -91,6 +91,14 @@ public class DealerController {
 		}
 	}
 	
+	public Boolean hitOrStand() {
+		if(d.willHit()) {
+			hit();
+			return true;
+		}
+		return false;
+	}
+	
 	private void paintCardOnScreen(String cardImageStr) {
 		
 		tf.p.paintCard(cardImageStr);
@@ -98,9 +106,45 @@ public class DealerController {
 		
 	}
 	
+	public int totalPoints() {
+		return this.d.getTotalPointCount();
+	}
+	
+	public int totalPointsWithAce() {
+		return this.d.getTotalPointCountWithAce();
+	}
+	
+	public boolean checkIfPlayerWasBusted () {
+		if (this.totalPoints() > 21) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean checkIfPlayerHasAce() {
+		if (d.getTotalPointCount() != d.getTotalPointCountWithAce()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean checkIfAceMaxBusts() {
+		
+		if (d.getTotalPointCountWithAce() > 21) {
+			return true;
+		}
+		return false;
+	}
+	
 	public void hit() {
 		Card drawed = drawCardToDealer();
 		String imageString = getImageString(drawed);
+		if (!this.checkIfPlayerHasAce() || this.checkIfAceMaxBusts()) {
+			tf.cardValue.setText(String.valueOf(this.totalPoints()));
+		}
+		else {	
+			tf.cardValue.setText(String.valueOf(this.totalPoints()) + "/" + String.valueOf(this.totalPointsWithAce()));
+		}
 		paintCardOnScreen(imageString);
 		
 	}
