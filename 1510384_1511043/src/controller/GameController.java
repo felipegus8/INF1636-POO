@@ -1,12 +1,12 @@
 package controller;
 import model.*;
 import view.*;
-import other.Status;
 import other.Suits;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 public class GameController {
 	private ArrayList<Card> deck = new ArrayList<Card>();
@@ -74,6 +74,7 @@ public class GameController {
 		
 		tf = new TableFrame(0,height + 30);
 		dc = new DealerController(new Dealer(),tf,this);
+		tf.g = this;
 		
 		for(int i=0;i<numPlayers;i++) {
 			GamblerFrame gf = new GamblerFrame(width,height,totalWidth,totalHeight);
@@ -90,15 +91,17 @@ public class GameController {
 	
 	private void blockPlayers() {
 		for(int i=0;i<numPlayers;i++) {
+			
 			GamblerController c = gcs.get(i);
 			if(this.currentPlayer != c.g.numGambler) {
 				c.blockHitAndStand();
 			} else {
-				if(c.isStanded() == false) {
-					c.unblockHitAndStand();
-				} else {
-					decideWhoPlaysNext();
-				}
+				c.unblockHitAndStand();
+//				if(c.isStanded() == false) {
+//					c.unblockHitAndStand();
+//				} else {
+//					decideWhoPlaysNext();
+//				}
 			}
 		}
 	}
@@ -116,10 +119,10 @@ public class GameController {
 				//dealer wins
 				System.out.println("dealer wins 1");
 			} else {
-				if(c.totalPoints() > dc.totalPoints()) {
+				if(c.totalPointsFinal() > dc.totalPoints()) {
 					//player wins
 					System.out.println("player wins 2");
-				} else if(c.totalPoints() < dc.totalPoints()) {
+				} else if(c.totalPointsFinal() < dc.totalPoints()) {
 					//dealer wins
 					System.out.println("dealer wins 2");
 				} else {
@@ -132,9 +135,32 @@ public class GameController {
 		}
 	}
 	
+	public void restartGame() {
+		deck.clear();
+		insertCards();
+		shuffleCards();
+		for(GamblerController c: gcs) {
+			c.clearHand();
+			c.restart();
+		}
+		dc.restart();
+		//decideWhoPlaysNext();
+		
+//		try {
+//			//TimeUnit.SECONDS.sleep(4);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+	}
+	
 	public void decideWhoPlaysNext() {
 		System.out.println("current " + currentPlayer);
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
+		
+		System.out.println("num round " + this.numRound );
+		
 		/* a round has passed*/
 		if(this.currentPlayer  == 1) {
 			if(this.numRound == 1) {
@@ -142,13 +168,18 @@ public class GameController {
 			}
 			this.numRound++;
 			
+			
 			if(this.numRound == 2) {
 				while(dc.hitOrStand());
 				checkWinner();
+				dc.enableRestart();
+				this.numRound = 0;
 			}
 			
 		}
-		blockPlayers();
+		if(this.numRound != 2) {
+			blockPlayers();
+		}
 	}
 	
 	

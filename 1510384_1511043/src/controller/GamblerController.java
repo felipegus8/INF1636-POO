@@ -15,6 +15,20 @@ public class GamblerController {
 		this.gf = gf;
 		this.gc = gc;
 		
+		give2Cards();
+		
+	}
+	
+	public void restart() {
+		gf.p.clearImgs();
+		gf.isStanded = false;
+		g.resetTotalPoints();
+		give2Cards();
+	}
+	
+
+	
+	private void give2Cards() {
 		hit();
 		hit();
 		if(checkIfPlayerHasAce()) {
@@ -82,12 +96,29 @@ public class GamblerController {
 		return this.g.getTotalPointCount();
 	}
 	
+	public int totalPointsFinal() {
+		if(checkIfPlayerHasAce()) {
+			if(checkIfAceMaxBusts()) {
+				return this.g.getTotalPointCount();
+			} else {
+				return this.g.getTotalPointCountWithAce();
+			}
+		} else {
+			return this.g.getTotalPointCount();
+		}
+	}
+	
+	public void clearHand() {
+		this.g.playerCards.clear();
+	}
+	
 	public int totalPointsWithAce() {
 		return this.g.getTotalPointCountWithAce();
 	}
 	
 	public boolean checkIfPlayerWasBusted () {
 		if (this.totalPoints() > 21) {
+			decideWhoPlaysNext();
 			return true;
 		}
 		return false;
@@ -103,7 +134,7 @@ public class GamblerController {
 	public boolean checkIfAceMaxBusts() {
 		
 		if (g.getTotalPointCountWithAce() > 21) {
-			decideWhoPlaysNext();
+			//decideWhoPlaysNext();
 			return true;
 		}
 		return false;

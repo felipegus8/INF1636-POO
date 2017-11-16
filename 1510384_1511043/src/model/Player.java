@@ -1,6 +1,6 @@
 package model;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import other.Status;
 
 public abstract class Player {
@@ -29,6 +29,12 @@ public abstract class Player {
 	public int getTotalPointCount() {
 		return this.totalPointCount;
 	}
+	
+	public void resetTotalPoints() {
+		this.totalPointCount = 0;
+		this.totalPointCountWithAce = 0;
+	}
+	
 	public int getTotalPointCountWithAce() {
 		return this.totalPointCountWithAce;
 	}

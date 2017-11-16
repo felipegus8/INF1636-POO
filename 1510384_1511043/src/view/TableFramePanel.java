@@ -46,7 +46,6 @@ public class TableFramePanel extends JPanel {
 		posX = 400;
 		posY = 160;
 		for(Image img: cardImgs) {
-			System.out.println("passei aqui");
 			g.drawImage(img, posX, posY, 50, 50, null);
 			int panelSize = this.getSize().width;
 			if (panelSize < posX){

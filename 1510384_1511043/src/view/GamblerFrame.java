@@ -32,6 +32,8 @@ public class GamblerFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				System.out.println("busted " + gc.checkIfPlayerWasBusted() + "standed " + isStanded);
+				
 				if(!gc.checkIfPlayerWasBusted() && (!isStanded)) {
 				hit.setEnabled(true);
 				gc.hit();
@@ -48,7 +50,8 @@ public class GamblerFrame extends JFrame{
 					p.add(stopHit);
 					hit.setEnabled(false);
 					stand.setEnabled(false);
-			}
+					gc.decideWhoPlaysNext();
+				}
 			}
 			
 		});
@@ -83,7 +86,6 @@ public class GamblerFrame extends JFrame{
 		this.setVisible(true);
 	}
 	
-	public void drawCard() {
-		
-	}
+	
+	
 }

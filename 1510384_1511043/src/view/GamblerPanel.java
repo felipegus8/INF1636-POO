@@ -17,17 +17,19 @@ import model.Card;
 public class GamblerPanel extends JPanel {
 	private int posX = 0, posY = 60;
 	
-	public ArrayList<Image> cardImgs = new ArrayList<Image>();
+	private ArrayList<Image> cardImgs = new ArrayList<Image>();
 	
 	public GamblerPanel() {
+	}
+	
+	public void clearImgs() {
+		cardImgs.clear();
 	}
 	
 	public void paintCard(String cardImageStr) {
 		Graphics g = this.getGraphics();
 		Image i = null;
-		
-		System.out.println(cardImageStr);
-		
+				
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/" + cardImageStr + ".gif"));
 		} catch(IOException e) {

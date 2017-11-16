@@ -1,8 +1,7 @@
 package controller;
 import model.Card;
+
 import model.Dealer;
-import model.Gambler;
-import view.GamblerFrame;
 import view.TableFrame;
 
 public class DealerController {
@@ -15,11 +14,27 @@ public class DealerController {
 		this.d = d;
 		this.tf = tf;
 		this.gc = gc;
+		
+		give2Cards();
+	}
+	
+	private void give2Cards() {
 		drawCardToDealer();
 		paintCardOnScreen("deck1");
 		hit();
 	}
 	
+	public void restart() {
+		tf.p.clearImgs();
+		d.resetTotalPoints();
+		d.playerCards.clear();
+		give2Cards();
+		tf.disableRestart();
+	}
+	
+	public void enableRestart() {
+		tf.enableRestart();
+	}
 
 	
 	private Card drawCardToDealer() {
@@ -134,6 +149,18 @@ public class DealerController {
 			return true;
 		}
 		return false;
+	}
+	
+	public int totalPointsFinal() {
+		if(checkIfPlayerHasAce()) {
+			if(checkIfAceMaxBusts()) {
+				return this.d.getTotalPointCount();
+			} else {
+				return this.d.getTotalPointCountWithAce();
+			}
+		} else {
+			return this.d.getTotalPointCount();
+		}
 	}
 	
 	public void hit() {
