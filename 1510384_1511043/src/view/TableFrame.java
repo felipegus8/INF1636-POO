@@ -44,6 +44,8 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	
 	public TableFrame(double posX,double posY) {
 		
+		this.addMouseListener(this);
+		
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/blackjackBKG.png"));
 		} catch(IOException e) {
@@ -95,7 +97,7 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		System.out.println("funcionou por algum motivo");
 		
 	}
 
