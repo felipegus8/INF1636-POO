@@ -84,6 +84,7 @@ public class GamblerFrame extends JFrame{
 	}
 	
 	public void addDidWonOrLostLabel() {
+		checkResultWinLose.setVisible(true);
 		p.add(checkResultWinLose);
 	}
 	
