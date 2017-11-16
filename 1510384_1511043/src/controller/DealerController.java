@@ -48,9 +48,7 @@ public class DealerController {
 					drawed.cardNumber = 10;
 				}
 				d.addPoint(drawed);
-			}
-			d.playerCards.add(drawed);
-			
+			}			
 			return drawed;
 		
 	}
