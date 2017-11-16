@@ -4,21 +4,15 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import controller.GameController;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 public class TableFrame extends JFrame {
@@ -58,6 +52,7 @@ public class TableFrame extends JFrame {
 		this.cardValue.setLocation(50,20);
 		this.cardValue.setForeground(Color.white);
 		this.cardValue.setFont(new Font("Helvetica", Font.PLAIN, 30));
+		this.cardValue.setVisible(false);
 		this.p.add(cardValue);
 		restart.setEnabled(false);
 		this.add(p);
@@ -80,6 +75,7 @@ public class TableFrame extends JFrame {
 	}
 	
 	public void enableRestart() {
+		this.cardValue.setVisible(true);
 		restart.setEnabled(true);
 		
 	}
