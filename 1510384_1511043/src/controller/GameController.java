@@ -32,22 +32,22 @@ public class GameController {
 	
 	public void insertCards() {
 		//hearts
-		for(int i = 0;i<5;i++) {
+		for(int i = 0;i<13;i++) {
 			deck.add(new Card(Suits.hearts,i+1));
 		}
 		
 		//spades
-		for(int i = 0;i<5;i++) {
+		for(int i = 0;i<13;i++) {
 			deck.add(new Card(Suits.spades,i+1));
 		}
 		
 		//diamonds
-		for(int i = 0;i<5;i++) {
+		for(int i = 0;i<13;i++) {
 			deck.add(new Card(Suits.diamonds,i+1));
 		}
 		
 		//clubs
-		for(int i = 0;i<5;i++) {
+		for(int i = 0;i<13;i++) {
 			deck.add(new Card(Suits.clubs,i+1));
 		}
 		
