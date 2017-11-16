@@ -6,9 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.GameController;
-
-import other.MouseClickHandler;
-
+import other.ObservadoIF;
+import other.ObservadorIF;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,15 +15,21 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class TableFrame extends JFrame {
+public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	//Graphics2D g;
 	Image i;
+	
+	private ArrayList<ObservadorIF> observers = new ArrayList<ObservadorIF>();
+
 	public TableFramePanel p = null;
 	private JButton restart = new JButton("RESTART");
 	public JLabel cardValue = new JLabel("0");
@@ -47,7 +52,6 @@ public class TableFrame extends JFrame {
 		}
 		
 		
-		this.addMouseListener(new MouseClickHandler());
 		p = new TableFramePanel(i);
 		
 		this.posX = (int)posX;
@@ -88,5 +92,58 @@ public class TableFrame extends JFrame {
 	public void disableRestart() {
 		restart.setEnabled(false);
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void registerObserver(ObservadorIF observer) {
+		observers.add(observer);
+		
+	}
+
+	@Override
+	public void removeObserver(ObservadorIF observer) {
+		for(ObservadorIF o: observers) {
+			if(o == observer) {
+				observers.remove(o);
+			}
+		}
+		
+	}
+
+	@Override
+	public void notifyObservers(String mensagem, Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
