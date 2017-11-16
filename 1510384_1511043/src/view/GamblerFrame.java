@@ -37,7 +37,7 @@ public class GamblerFrame extends JFrame{
 		setSize((int) x,(int) y);
 		Point po = new Point((int) posX,(int) posY);
 		doubleBet.setEnabled(false);
-				
+		checkResultWinLose.setVisible(false);
 		hit.addActionListener(new ActionListener() {
 
 			@Override
@@ -106,8 +106,6 @@ public class GamblerFrame extends JFrame{
 	public void addDidWonOrLostLabel() {
 		checkResultWinLose.setVisible(true);
 		p.add(checkResultWinLose);
+		p.validate();
 	}
-	
-	
-	
 }
