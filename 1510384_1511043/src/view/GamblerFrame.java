@@ -9,19 +9,18 @@ import controller.GameController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Point;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 public class GamblerFrame extends JFrame{	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JButton hit = new JButton("HIT");
 	public JButton stand = new JButton("STAND");
 	public JButton doubleBet = new JButton ("DOUBLE");

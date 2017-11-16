@@ -3,7 +3,6 @@ package view;
 import javax.swing.JFrame;
 
 
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,6 +11,10 @@ import other.ButtonListener;
 import javax.swing.JLabel;
 
 public class FirstScreen extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel choose = new JLabel("Choose the Number of Players\n");
 	JButton onePlayer = new JButton("1");
 	JButton twoPlayers = new JButton("2");

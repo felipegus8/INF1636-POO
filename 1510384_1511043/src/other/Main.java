@@ -1,8 +1,6 @@
 package other;
 
 import controller.GameController;
-import other.MouseClickHandler;
-
 
 public class Main {
 

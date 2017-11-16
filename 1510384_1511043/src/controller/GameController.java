@@ -97,11 +97,6 @@ public class GameController {
 				c.blockHitAndStand();
 			} else {
 				c.unblockHitAndStand();
-//				if(c.isStanded() == false) {
-//					c.unblockHitAndStand();
-//				} else {
-//					decideWhoPlaysNext();
-//				}
 			}
 		}
 	}
