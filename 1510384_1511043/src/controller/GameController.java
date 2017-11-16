@@ -107,6 +107,14 @@ public class GameController {
 		}
 	}
 	
+	public void blockAllPlayers() {
+		for(int i=0;i<numPlayers;i++) {	
+			GamblerController c = gcs.get(i);
+			System.out.println("no mitico block all players");
+			c.blockHitAndStand();		
+		}
+	}
+	
 	void checkWinner() {
 		for(int i=0;i<numPlayers;i++) {
 			GamblerController c = gcs.get(i);
@@ -145,12 +153,13 @@ public class GameController {
 			c.restart();
 		}
 		dc.restart();
+		blockPlayers();
 
 		
 	}
 	
 	public void decideWhoPlaysNext() {
-		System.out.println("current " + currentPlayer);
+		System.out.println("CURRENT PLAYER " + currentPlayer);
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
 		
 		
@@ -162,12 +171,15 @@ public class GameController {
 			}
 			this.numRound++;
 			
+			System.out.println("NUM ROUND ONDE IMPORTA " + this.numRound);
 			
 			if(this.numRound == 2) {
 				while(dc.hitOrStand());
 				checkWinner();
 				dc.enableRestart();
-				this.numRound = 0;
+				blockAllPlayers();
+				this.numRound = 1;
+				return;
 			}
 			
 		}

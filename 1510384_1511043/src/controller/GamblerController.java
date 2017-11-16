@@ -144,6 +144,7 @@ public class GamblerController {
 	}
 	
 	public void unblockHitAndStand() {
+		System.out.println("ALGUM MITO CHAMOU ISSO");
 		gf.hit.setEnabled(true);
 		gf.stand.setEnabled(true);
 		
