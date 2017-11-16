@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import controller.GamblerController;
 import controller.GameController;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
@@ -36,7 +37,7 @@ public class GamblerFrame extends JFrame{
 		setSize((int) x,(int) y);
 		Point po = new Point((int) posX,(int) posY);
 		doubleBet.setEnabled(false);
-		
+				
 		hit.addActionListener(new ActionListener() {
 
 			@Override

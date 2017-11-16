@@ -7,6 +7,9 @@ import javax.swing.JLabel;
 
 import controller.GameController;
 
+import other.MouseClickHandler;
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -43,6 +46,8 @@ public class TableFrame extends JFrame {
 			System.exit(1);
 		}
 		
+		
+		this.addMouseListener(new MouseClickHandler());
 		p = new TableFramePanel(i);
 		
 		this.posX = (int)posX;
