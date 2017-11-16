@@ -25,10 +25,7 @@ public class TableFramePanel extends JPanel {
 	
 	public void paintCard(String cardImageStr) {
 		Graphics g = this.getGraphics();
-		Image i = null;
-		
-		System.out.println(cardImageStr);
-		
+		Image i = null;		
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/" + cardImageStr + ".gif"));
 		} catch(IOException e) {

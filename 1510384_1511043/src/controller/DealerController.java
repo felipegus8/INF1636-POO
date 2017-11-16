@@ -41,13 +41,13 @@ public class DealerController {
 		Card drawed = gc.drawCard();
 
 		if (drawed.cardNumber == 1) {
-			d.addPoint(drawed.cardNumber,true);
+			d.addPoint(drawed);
 			}
 			else {
 				if (drawed.cardNumber > 10) {
 					drawed.cardNumber = 10;
 				}
-				d.addPoint(drawed.cardNumber, false);
+				d.addPoint(drawed);
 			}
 			d.playerCards.add(drawed);
 			
