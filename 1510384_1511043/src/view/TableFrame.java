@@ -60,9 +60,9 @@ public class TableFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				cardValue.setVisible(false);
 				g.restartGame();		
 			}
-			
 			
 			
 		});
