@@ -31,11 +31,7 @@ public class GamblerController {
 	private void give2Cards() {
 		hit();
 		hit();
-		if(checkIfPlayerHasAce()) {
-			gf.cardValue.setText(Integer.toString(totalPointsWithAce()));
-		} else {
-			gf.cardValue.setText(Integer.toString(totalPoints()));		
-		}
+		gf.cardValue.setText(getCorrectTextForCardValue());
 	}
 	
 	public void hit() {
@@ -138,6 +134,13 @@ public class GamblerController {
 			return true;
 		}
 		return false;
+	}
+	
+	public String getCorrectTextForCardValue() {
+		if (checkIfPlayerHasAce() && !checkIfAceMaxBusts()) {
+			return String.valueOf(totalPoints()) + "/" + String.valueOf(totalPointsWithAce());
+		}
+		return String.valueOf(totalPoints());
 	}
 	
 	public void unblockHitAndStand() {

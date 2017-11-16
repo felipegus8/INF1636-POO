@@ -78,6 +78,7 @@ public class GameController {
 		
 		for(int i=0;i<numPlayers;i++) {
 			GamblerFrame gf = new GamblerFrame(width,height,totalWidth,totalHeight);
+			gf.setTitle("Player " + String.valueOf(i + 1));
 			GamblerController gc = new GamblerController(new Gambler(i + 1),gf,this);
 			gf.gc = gc;
 			gcs.add(gc);
