@@ -15,11 +15,12 @@ public abstract class Player {
 	
 	protected abstract void stand();
 	
-	public void addPoint(int numPoints,boolean isAce) {
+	public void addPoint(Card card) {
 		int qtdAces = 0;
-		if (!isAce)  {
-		this.totalPointCount += numPoints;
-		this.totalPointCountWithAce = this.totalPointCount;
+		playerCards.add(card);
+		if (card.cardNumber != 1)  {
+		this.totalPointCount += card.cardNumber;
+		this.totalPointCountWithAce += card.cardNumber;
 		}
 		else {
 			for(Card c : playerCards) {
@@ -28,7 +29,7 @@ public abstract class Player {
 				}
 			}
 			this.totalPointCount += 1;
-			if (qtdAces == 0) {
+			if (qtdAces == 1) {
 			this.totalPointCountWithAce += 11;
 			}
 			else {

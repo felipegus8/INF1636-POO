@@ -32,22 +32,22 @@ public class GameController {
 	
 	public void insertCards() {
 		//hearts
-		for(int i = 0;i<13;i++) {
+		for(int i = 0;i<5;i++) {
 			deck.add(new Card(Suits.hearts,i+1));
 		}
 		
 		//spades
-		for(int i = 0;i<13;i++) {
+		for(int i = 0;i<5;i++) {
 			deck.add(new Card(Suits.spades,i+1));
 		}
 		
 		//diamonds
-		for(int i = 0;i<13;i++) {
+		for(int i = 0;i<5;i++) {
 			deck.add(new Card(Suits.diamonds,i+1));
 		}
 		
 		//clubs
-		for(int i = 0;i<13;i++) {
+		for(int i = 0;i<5;i++) {
 			deck.add(new Card(Suits.clubs,i+1));
 		}
 		
@@ -109,7 +109,6 @@ public class GameController {
 	public void blockAllPlayers() {
 		for(int i=0;i<numPlayers;i++) {	
 			GamblerController c = gcs.get(i);
-			System.out.println("no mitico block all players");
 			c.blockHitAndStand();		
 		}
 	}
@@ -120,26 +119,20 @@ public class GameController {
 			if(dc.checkIfPlayerWasBusted() && c.checkIfPlayerWasBusted()) {
 				//draw
 				c.gf.checkResultWinLose.setText("Draw");
-				System.out.println("draw 1");
 			} else if(dc.checkIfPlayerWasBusted()) {
 				c.gf.checkResultWinLose.setText("You Won");
-				System.out.println("player wins 1");
 				//player wins
 			} else if(c.checkIfPlayerWasBusted()){
 				//dealer wins
-				System.out.println("dealer wins 1");
 			} else {
 				if(c.totalPointsFinal() > dc.totalPoints()) {
 					//player wins
 					c.gf.checkResultWinLose.setText("You Won");
-					System.out.println("player wins 2");
 				} else if(c.totalPointsFinal() < dc.totalPoints()) {
 					//dealer wins
 					c.gf.checkResultWinLose.setText("You Lost");
-					System.out.println("dealer wins 2");
 				} else {
 					c.gf.checkResultWinLose.setText("Draw");
-					System.out.println("draw 2");
 					//draw
 				} 
 			}
@@ -162,7 +155,6 @@ public class GameController {
 	}
 	
 	public void decideWhoPlaysNext() {
-		System.out.println("CURRENT PLAYER " + currentPlayer);
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
 		
 		
@@ -173,9 +165,7 @@ public class GameController {
 				dc.turnCard();
 			}
 			this.numRound++;
-			
-			System.out.println("NUM ROUND ONDE IMPORTA " + this.numRound);
-			
+						
 			if(this.numRound == 2) {
 				while(dc.hitOrStand());
 				checkWinner();

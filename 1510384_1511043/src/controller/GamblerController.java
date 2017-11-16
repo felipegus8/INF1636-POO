@@ -76,17 +76,16 @@ public class GamblerController {
 			
 		}
 		
-		gf.p.paintCard(cardImageStr);
 		if (drawed.cardNumber == 1) {
-		g.addPoint(drawed.cardNumber,true);
+		g.addPoint(drawed);
 		}
 		else {
 			if (drawed.cardNumber > 10) {
 				drawed.cardNumber = 10;
 			}
-			g.addPoint(drawed.cardNumber, false);
+			g.addPoint(drawed);
 		}
-		g.playerCards.add(drawed);
+		gf.p.paintCard(cardImageStr);
 		gf.repaint();
 	}
 	public int totalPoints() {
@@ -122,11 +121,13 @@ public class GamblerController {
 	}
 	
 	public boolean checkIfPlayerHasAce() {
-		if (g.getTotalPointCount() != g.getTotalPointCountWithAce()) {
-			return true;
+		for(Card c : g.playerCards) {
+			if (c.cardNumber == 1) {
+				return true;
+			}
 		}
 		return false;
-	}
+}
 	
 	public boolean checkIfAceMaxBusts() {
 		
@@ -145,7 +146,6 @@ public class GamblerController {
 	}
 	
 	public void unblockHitAndStand() {
-		System.out.println("ALGUM MITO CHAMOU ISSO");
 		gf.hit.setEnabled(true);
 		gf.stand.setEnabled(true);
 		
