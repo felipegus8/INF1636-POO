@@ -46,42 +46,42 @@ public class TableFramePanel extends JPanel {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-		g.drawImage(i,750,200,60,60, null);
+		g.drawImage(i,750,200,50,50, null);
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/ficha_5.png"));
 		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-		g.drawImage(i,810,200,60,60, null);
+		g.drawImage(i,810,200,50,50, null);
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/ficha_10.png"));
 		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-		g.drawImage(i,750,260,60,60, null);
+		g.drawImage(i,750,260,50,50, null);
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/ficha_20.png"));
 		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-		g.drawImage(i,810,260,60,60, null);
+		g.drawImage(i,810,260,50,50, null);
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/ficha_50.png"));
 		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-		g.drawImage(i,750,320,60,60, null);
+		g.drawImage(i,750,320,50,50, null);
 		try {
 			i = ImageIO.read(getClass().getResourceAsStream("/ficha_100.png"));
 		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-		g.drawImage(i,810,320,60,60, null);
+		g.drawImage(i,810,320,50,50, null);
 		posX = 400;
 		posY = 160;
 		for(Image img: cardImgs) {
