@@ -10,8 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Point;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 public class GamblerFrame extends JFrame{	
@@ -30,6 +36,7 @@ public class GamblerFrame extends JFrame{
 		setSize((int) x,(int) y);
 		Point po = new Point((int) posX,(int) posY);
 		doubleBet.setEnabled(false);
+		
 		hit.addActionListener(new ActionListener() {
 
 			@Override
@@ -75,11 +82,23 @@ public class GamblerFrame extends JFrame{
 			
 		});
 		this.setLocation(po);
-		this.add(p);
-		p.add(hit);
-		p.add(stand);
-		p.add(doubleBet);
+
+		GridBagLayout borderL = new GridBagLayout();
+		p.setLayout(borderL);
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 0.5;
+		c.gridx = 0;
+		c.gridy = 1;
+		p.add(hit,c);
+		c.gridx = 1;
+		c.gridy = 1;
+		p.add(stand,c);
+		c.gridx = 2;
+		c.gridy = 1;
+		p.add(doubleBet,c);
 		p.add(cardValue);
+		this.add(p);
 		this.setVisible(true);
 	}
 	

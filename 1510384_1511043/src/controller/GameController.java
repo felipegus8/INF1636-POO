@@ -119,8 +119,10 @@ public class GameController {
 			if(dc.checkIfPlayerWasBusted() && c.checkIfPlayerWasBusted()) {
 				//draw
 				c.gf.checkResultWinLose.setText("Draw");
+				c.gf.addDidWonOrLostLabel();
 			} else if(dc.checkIfPlayerWasBusted()) {
 				c.gf.checkResultWinLose.setText("You Won");
+				c.gf.addDidWonOrLostLabel();
 				//player wins
 			} else if(c.checkIfPlayerWasBusted()){
 				//dealer wins
@@ -128,15 +130,18 @@ public class GameController {
 				if(c.totalPointsFinal() > dc.totalPoints()) {
 					//player wins
 					c.gf.checkResultWinLose.setText("You Won");
+					c.gf.addDidWonOrLostLabel();
 				} else if(c.totalPointsFinal() < dc.totalPoints()) {
 					//dealer wins
 					c.gf.checkResultWinLose.setText("You Lost");
+					c.gf.addDidWonOrLostLabel();
 				} else {
 					c.gf.checkResultWinLose.setText("Draw");
+					c.gf.addDidWonOrLostLabel();
 					//draw
 				} 
 			}
-			c.gf.addDidWonOrLostLabel();
+		
 		}
 	}
 	

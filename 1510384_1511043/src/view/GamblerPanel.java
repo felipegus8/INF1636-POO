@@ -20,6 +20,7 @@ public class GamblerPanel extends JPanel {
 	private ArrayList<Image> cardImgs = new ArrayList<Image>();
 	
 	public GamblerPanel() {
+		
 	}
 	
 	public void clearImgs() {
