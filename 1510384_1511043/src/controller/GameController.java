@@ -66,7 +66,7 @@ public class GameController {
 	
 	public void generateFrames(int numPlayers) {
 		this.numPlayers = numPlayers;
-		double width = this.screenSize.getWidth()/(numPlayers + 1);
+		double width = this.screenSize.getWidth()/(numPlayers + 1) + 50;
 		double height = this.screenSize.getHeight() / 3;
 		
 		double totalWidth = 0.0;
@@ -120,8 +120,10 @@ public class GameController {
 			GamblerController c = gcs.get(i);
 			if(dc.checkIfPlayerWasBusted() && c.checkIfPlayerWasBusted()) {
 				//draw
+				c.gf.checkResultWinLose.setText("Draw");
 				System.out.println("draw 1");
 			} else if(dc.checkIfPlayerWasBusted()) {
+				c.gf.checkResultWinLose.setText("You Won");
 				System.out.println("player wins 1");
 				//player wins
 			} else if(c.checkIfPlayerWasBusted()){
@@ -130,17 +132,19 @@ public class GameController {
 			} else {
 				if(c.totalPointsFinal() > dc.totalPoints()) {
 					//player wins
+					c.gf.checkResultWinLose.setText("You Won");
 					System.out.println("player wins 2");
 				} else if(c.totalPointsFinal() < dc.totalPoints()) {
 					//dealer wins
+					c.gf.checkResultWinLose.setText("You Lost");
 					System.out.println("dealer wins 2");
 				} else {
+					c.gf.checkResultWinLose.setText("Draw");
 					System.out.println("draw 2");
 					//draw
 				} 
 			}
-			
-			
+			c.gf.addDidWonOrLostLabel();
 		}
 	}
 	

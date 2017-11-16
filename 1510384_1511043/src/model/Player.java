@@ -16,13 +16,24 @@ public abstract class Player {
 	protected abstract void stand();
 	
 	public void addPoint(int numPoints,boolean isAce) {
+		int qtdAces = 0;
 		if (!isAce)  {
 		this.totalPointCount += numPoints;
 		this.totalPointCountWithAce = this.totalPointCount;
 		}
 		else {
+			for(Card c : playerCards) {
+				if(c.cardNumber == 1) {
+					qtdAces ++;
+				}
+			}
 			this.totalPointCount += 1;
+			if (qtdAces == 0) {
 			this.totalPointCountWithAce += 11;
+			}
+			else {
+				this.totalPointCountWithAce += 1;
+			}
 		}
 	}
 	

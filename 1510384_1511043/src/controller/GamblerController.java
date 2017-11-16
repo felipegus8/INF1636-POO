@@ -22,6 +22,7 @@ public class GamblerController {
 	public void restart() {
 		gf.p.clearImgs();
 		gf.isStanded = false;
+		gf.stopHit.setVisible(false);
 		g.resetTotalPoints();
 		give2Cards();
 	}
