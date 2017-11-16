@@ -145,14 +145,7 @@ public class GameController {
 			c.restart();
 		}
 		dc.restart();
-		//decideWhoPlaysNext();
-		
-//		try {
-//			//TimeUnit.SECONDS.sleep(4);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		
 	}
 	
@@ -160,7 +153,7 @@ public class GameController {
 		System.out.println("current " + currentPlayer);
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
 		
-		System.out.println("num round " + this.numRound );
+		
 		
 		/* a round has passed*/
 		if(this.currentPlayer  == 1) {
@@ -178,6 +171,7 @@ public class GameController {
 			}
 			
 		}
+		
 		if(this.numRound != 2) {
 			blockPlayers();
 		}

@@ -114,7 +114,7 @@ public class GamblerController {
 	
 	public boolean checkIfPlayerWasBusted () {
 		if (this.totalPoints() > 21) {
-			decideWhoPlaysNext();
+			//decideWhoPlaysNext();
 			return true;
 		}
 		return false;
