@@ -149,13 +149,14 @@ public class GamblerController {
 	public void unblockHitAndStand() {
 		gf.hit.setEnabled(true);
 		gf.stand.setEnabled(true);
+		gf.doubleBet.setEnabled(true);
 		
 	}
 	
 	public void blockHitAndStand() {
 		gf.hit.setEnabled(false);
 		gf.stand.setEnabled(false);
-		
+		gf.doubleBet.setEnabled(false);	
 	}
 	
 	public void decideWhoPlaysNext() {

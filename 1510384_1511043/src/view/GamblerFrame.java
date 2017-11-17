@@ -37,7 +37,6 @@ public class GamblerFrame extends JFrame{
 	public GamblerFrame(double x, double y,double posX, double posY) {
 		setSize((int) x,(int) y);
 		Point po = new Point((int) posX,(int) posY);
-		doubleBet.setEnabled(false);
 		checkResultWinLose.setVisible(false);
 		hit.addActionListener(new ActionListener() {
 
@@ -77,12 +76,31 @@ public class GamblerFrame extends JFrame{
 			      isStanded = true;
 			      stand.setEnabled(false);
 			      hit.setEnabled(false);
-			      
-			      
-				
 			}
 			
 		});
+		doubleBet.addActionListener(new ActionListener() {
+			//TODO:DOUBLE THE BET HERE.This only makes a Hit followed by a Stand.
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!gc.checkIfPlayerWasBusted() && (!isStanded)) {
+					doubleBet.setEnabled(true);
+					gc.hit();
+					cardValue.setText(gc.getCorrectTextForCardValue());
+				}
+				if (gc.checkIfPlayerWasBusted()) { 
+					stopHit.setVisible(true);
+					p.add(stopHit);		
+				}
+				hit.setEnabled(false);
+				stand.setEnabled(false);
+				doubleBet.setEnabled(false);
+				isStanded = true;
+				gc.decideWhoPlaysNext();
+			}
+		});
+		
+		
 		this.setLocation(po);
 
 		GridBagLayout borderL = new GridBagLayout();
