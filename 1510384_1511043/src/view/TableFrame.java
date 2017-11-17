@@ -97,13 +97,45 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("funcionou por algum motivo");
+//		Point p = e.getLocationOnScreen();
+//		if (p.getX() > 750 && p.getX() < 810 && p.getY() > 200 && p.getY() < 260) {
+//			System.out.println("FICHA 1");
+//		}
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+	//	System.out.println("funcionou por algum motivo");
+		System.out.println(e.getX());
+		System.out.println(e.getY());
+//		if (e.getX() > 725 && e.getX() < 775 && e.getY() > 200 && e.getY() < 250) {
+//			System.out.println("FICHA 1");
+//		}
+//		
+//		if (e.getX() > 785 && e.getX() < 835 && e.getY() > 200 && e.getY() < 250) {
+//			System.out.println("FICHA 5");
+//		}
+//		
+//		if (e.getX() > 725 && e.getX() < 775 && e.getY() > 260 && e.getY() < 310) {
+//			System.out.println("FICHA 10");
+//		}
+//		
+//		if (e.getX() > 785 && e.getX() < 835 && e.getY() > 260 && e.getY() < 310) {
+//			System.out.println("FICHA 20");
+//		}
+//		
+//		if (e.getX() > 725 && e.getX() < 775 && e.getY() > 320 && e.getY() < 370) {
+//			System.out.println("FICHA 50");
+//		}
+//		
+//		if (e.getX() > 785 && e.getX() < 835 && e.getY() > 320 && e.getY() < 370) {
+//			System.out.println("FICHA 100");
+//		}
+	
+		
+
 		
 	}
 

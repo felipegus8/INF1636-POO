@@ -113,8 +113,9 @@ public class GameController {
 			GamblerController c = gcs.get(i);
 			if(dc.checkIfPlayerWasBusted() && c.checkIfPlayerWasBusted()) {
 				//draw
-				c.gf.checkResultWinLose.setText("Draw");
-				c.gf.addDidWonOrLostLabel();
+				//NOT A DRAW HERE.PLAYER LOSES IF BOTH ARE BUSTED.
+		//		c.gf.checkResultWinLose.setText("Draw");
+		//		c.gf.addDidWonOrLostLabel();
 			} else if(dc.checkIfPlayerWasBusted()) {
 				c.gf.checkResultWinLose.setText("You Won");
 				c.gf.addDidWonOrLostLabel();
