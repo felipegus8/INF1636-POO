@@ -9,7 +9,7 @@ import controller.GameController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Point;
@@ -27,6 +27,8 @@ public class GamblerFrame extends JFrame{
 	public JLabel cardValue = new JLabel("0");
 	public JLabel stopHit = new JLabel("BUSTED");
 	public JLabel checkResultWinLose = new JLabel ("You Won");
+	public JLabel totalCoinsGambler = new JLabel("Total Money:1000");
+	public JLabel totalMoneyBetted = new JLabel("Money Betted:100");
 	public GamblerPanel p = new GamblerPanel();
 	public GamblerController gc = null;
 	public GameController g = null;
@@ -87,7 +89,7 @@ public class GamblerFrame extends JFrame{
 		p.setLayout(borderL);
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
+		
 		c.gridx = 0;
 		c.gridy = 1;
 		p.add(hit,c);
@@ -97,7 +99,16 @@ public class GamblerFrame extends JFrame{
 		c.gridx = 2;
 		c.gridy = 1;
 		p.add(doubleBet,c);
+		
 		p.add(cardValue);
+		//c.weightx = 0.5;
+		c.gridx = 0;
+		c.gridy = -8;
+		c.anchor = GridBagConstraints.PAGE_END;
+		p.add(totalCoinsGambler,c);
+		c.gridx = 0;
+		c.gridy = -5;
+		p.add(totalMoneyBetted,c);
 		this.add(p);
 		this.setVisible(true);
 	}

@@ -46,7 +46,7 @@ public class GamblerPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		posX = 0;
-		posY = 40;
+		posY = 20;
 		for(Image img: cardImgs) {
 			g.drawImage(img, posX, posY, 50, 50, null);
 			int panelSize = this.getSize().width;
