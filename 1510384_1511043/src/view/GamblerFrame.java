@@ -25,6 +25,7 @@ public class GamblerFrame extends JFrame{
 	public JButton stand = new JButton("STAND");
 	public JButton doubleBet = new JButton ("DOUBLE");
 	public JButton bet = new JButton("BET");
+	public JButton surrender = new JButton ("SURRENDER");
 	public JLabel cardValue = new JLabel("0");
 	public JLabel stopHit = new JLabel("BUSTED");
 	public JLabel checkResultWinLose = new JLabel ("You Won");
@@ -128,28 +129,29 @@ public class GamblerFrame extends JFrame{
 		p.setLayout(borderL);
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
-		
 		c.gridx = 0;
 		c.gridy = 1;
-		p.add(hit,c);
+		p.add(stand,c);
 		c.gridx = 1;
 		c.gridy = 1;
-		p.add(stand,c);
+		p.add(hit,c);
 		c.gridx = 2;
 		c.gridy = 1;
 		p.add(doubleBet,c);
-		c.gridx = 1;
+		c.gridx = 0;
 		c.gridy = 4;
 		p.add(bet,c);
-		
+		c.gridx = 1;
+		c.gridy = 4;
+		p.add(surrender,c);
 		p.add(cardValue);
-		//c.weightx = 0.5;
-		c.gridx = 0;
-		c.gridy = -8;
-		c.anchor = GridBagConstraints.PAGE_END;
+		
+		c.gridx = 1;
+		c.gridy = 8;
+	//	c.anchor = GridBagConstraints.PAGE_END;
 		p.add(totalCoinsGambler,c);
-		c.gridx = 0;
-		c.gridy = -5;
+		c.gridx = 1;
+		c.gridy = 12;
 		p.add(totalMoneyBetted,c);
 		this.add(p);
 		this.setVisible(true);
