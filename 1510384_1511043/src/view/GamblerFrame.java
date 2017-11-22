@@ -182,4 +182,14 @@ public class GamblerFrame extends JFrame{
 		cardValue.setVisible(true);
 		cardValue.validate();
 	}
+	
+	public void disableBetButton() {
+		bet.setEnabled(false);
+		bet.validate();
+	}
+	
+	public void enableBetButton() {
+		bet.setEnabled(true);
+		bet.validate();
+	}
 }
