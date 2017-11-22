@@ -87,7 +87,7 @@ public class GameController implements ObservadorIF{
 			totalWidth += width;
 		}
 		
-		blockPlayers();
+	//	blockPlayers();
 		
 	}
 	
@@ -183,7 +183,7 @@ public class GameController implements ObservadorIF{
 		}
 		
 		if(this.numRound != 2) {
-			blockPlayers();
+			//blockPlayers();
 		}
 	}
 

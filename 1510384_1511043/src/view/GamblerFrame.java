@@ -36,6 +36,9 @@ public class GamblerFrame extends JFrame{
 	public boolean isStanded = false;
 	public GamblerFrame(double x, double y,double posX, double posY) {
 		setSize((int) x,(int) y);
+		hit.setEnabled(false);
+		stand.setEnabled(false);
+		doubleBet.setEnabled(false);
 		Point po = new Point((int) posX,(int) posY);
 		checkResultWinLose.setVisible(false);
 		hit.addActionListener(new ActionListener() {
@@ -86,6 +89,13 @@ public class GamblerFrame extends JFrame{
 				if(!gc.checkIfPlayerWasBusted() && (!isStanded)) {
 					doubleBet.setEnabled(true);
 					gc.hit();
+					int total = gc.totalBetted();
+					if(total <= 50) { 
+					alterCurrentBetLabel(total * 2);
+					}
+					else {
+						alterCurrentBetLabel(100);
+					}
 					cardValue.setText(gc.getCorrectTextForCardValue());
 				}
 				if (gc.checkIfPlayerWasBusted()) { 
@@ -144,6 +154,9 @@ public class GamblerFrame extends JFrame{
 	}
 	
 	public void alterCurrentBetLabel(int currentBet) {
+		hit.setEnabled(true);
+		stand.setEnabled(true);
+		doubleBet.setEnabled(true);
 		this.totalMoneyBetted.setText("Money Betted:" + Integer.toString(currentBet));
 		totalMoneyBetted.validate();
 		p.validate();
