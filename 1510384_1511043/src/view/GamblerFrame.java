@@ -116,7 +116,7 @@ public class GamblerFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				  gc.didFinishBet();
-				  bet.setEnabled(false);
+				  //bet.setEnabled(false);
 				  
 			}
 			

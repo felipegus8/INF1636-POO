@@ -206,6 +206,8 @@ public class GamblerController {
 	
 	public void didFinishBet() {
 		if(g.totalBetted() > 0) {
+			System.out.println("time to cry");
+			gf.bet.setEnabled(false);
 			decideWhoPlaysNext();
 		}
 	}

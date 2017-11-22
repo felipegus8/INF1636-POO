@@ -103,6 +103,18 @@ public class GameController implements ObservadorIF{
 		}
 	}
 	
+	public void blockBet() {
+		for(int i=0;i<numPlayers;i++) {
+			
+			GamblerController c = gcs.get(i);
+			if(this.currentPlayer != c.g.numGambler) {
+				c.enableBet();
+			} else {
+				c.unblockHitAndStand();
+			}
+		}
+	}
+	
 	public void blockAllPlayers() {
 		for(int i=0;i<numPlayers;i++) {	
 			GamblerController c = gcs.get(i);
@@ -191,9 +203,13 @@ public class GameController implements ObservadorIF{
 				return;
 			}
 			
+			if(this.numRound == 1) {
+				
+			}
+			
 		}
 		
-		if(this.numRound != 3) {
+		if(this.numRound == 2) {
 			blockPlayers();
 		}
 	}
