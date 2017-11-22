@@ -101,6 +101,12 @@ public class GamblerFrame extends JFrame{
 				hit.setEnabled(false);
 				stand.setEnabled(false);
 				doubleBet.setEnabled(false);
+				  if (gc.checkIfPlayerHasAce() && !gc.checkIfAceMaxBusts()) {
+					  cardValue.setText(String.valueOf(gc.totalPointsWithAce()));
+				  }
+				  else {
+					  cardValue.setText(String.valueOf(gc.totalPoints()));
+				  }
 				isStanded = true;
 				gc.decideWhoPlaysNext();
 			}
