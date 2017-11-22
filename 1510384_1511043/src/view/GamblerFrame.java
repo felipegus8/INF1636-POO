@@ -91,12 +91,7 @@ public class GamblerFrame extends JFrame{
 					doubleBet.setEnabled(true);
 					gc.hit();
 					int total = gc.totalBetted();
-					if(total <= 50) { 
-					alterCurrentBetLabel(total * 2);
-					}
-					else {
-						alterCurrentBetLabel(100);
-					}
+					gc.doubleBet();
 					cardValue.setText(gc.getCorrectTextForCardValue());
 				}
 				if (gc.checkIfPlayerWasBusted()) { 
