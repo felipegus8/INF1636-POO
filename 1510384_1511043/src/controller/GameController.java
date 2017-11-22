@@ -149,6 +149,7 @@ public class GameController implements ObservadorIF{
 		for(GamblerController c: gcs) {
 			c.clearHand();
 			c.restart();
+			c.clearCurrentBet();
 		}
 		dc.restart();
 		blockPlayers();
@@ -184,9 +185,9 @@ public class GameController implements ObservadorIF{
 	}
 
 	@Override
-	public void update(int caso, Object obj) {
+	public void update(int valor, Object obj) {
 		GamblerController c = gcs.get(this.currentPlayer - 1);
-		c.betChip(caso);	
+		c.betChip(valor);	
 	}	
 	
 	

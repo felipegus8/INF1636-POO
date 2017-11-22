@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Gambler extends Player{
-	int totalMoneyAvailable = 10000;
+	public int totalMoneyAvailable = 10000;
 	public int numGambler;
 	private ArrayList<Chip> betChips = new ArrayList<Chip>();
 	
@@ -13,9 +13,13 @@ public class Gambler extends Player{
 	
 	public void betChip(int value) {
 		if(this.totalMoneyAvailable >= value) {
-			this.totalMoneyAvailable -= value;
-			this.betChips.add(new Chip(value));
-			System.out.println("value " + value);
+			if(this.totalBetted() + value <= 100) {
+				this.totalMoneyAvailable -= value;
+				this.betChips.add(new Chip(value));
+				System.out.println("value " + value);
+			} else {
+				System.out.println("i'm afraid i can't let you do that");
+			}
 		} else {
 			System.out.println("i'm afraid i can't let you do that");
 		}
@@ -27,6 +31,10 @@ public class Gambler extends Player{
 			totalMoneyBetted += c.value;
 		}
 		return totalMoneyBetted;
+	}
+	
+	public void clearCurrentBet() {
+		this.betChips.clear();
 	}
 	
 	@Override

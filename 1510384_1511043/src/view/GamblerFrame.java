@@ -27,8 +27,8 @@ public class GamblerFrame extends JFrame{
 	public JLabel cardValue = new JLabel("0");
 	public JLabel stopHit = new JLabel("BUSTED");
 	public JLabel checkResultWinLose = new JLabel ("You Won");
-	public JLabel totalCoinsGambler = new JLabel("Total Money:1000");
-	public JLabel totalMoneyBetted = new JLabel("Money Betted:100");
+	public JLabel totalCoinsGambler = new JLabel("Total Money:10000");
+	public JLabel totalMoneyBetted = new JLabel("Money Betted:0");
 	public GamblerPanel p = new GamblerPanel();
 	public GamblerController gc = null;
 	public GameController g = null;
@@ -138,13 +138,13 @@ public class GamblerFrame extends JFrame{
 	}
 	
 	public void alterTotalMoneyLabel(int totalMoneyPlayerHas) {
-		this.totalCoinsGambler.setText("Total Money" + Integer.toString(totalMoneyPlayerHas));
+		this.totalCoinsGambler.setText("Total Money:" + Integer.toString(totalMoneyPlayerHas));
 		totalCoinsGambler.validate();
 		p.validate();
 	}
 	
 	public void alterCurrentBetLabel(int currentBet) {
-		this.totalMoneyBetted.setText("Money Betted" + Integer.toString(currentBet));
+		this.totalMoneyBetted.setText("Money Betted:" + Integer.toString(currentBet));
 		totalMoneyBetted.validate();
 		p.validate();
 	}

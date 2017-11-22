@@ -171,6 +171,13 @@ public class GamblerController {
 	
 	public void betChip(int value) {
 		g.betChip(value);
+		this.gf.alterCurrentBetLabel(g.totalBetted());
+		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
+	}
+	
+	public void clearCurrentBet() {
+		this.g.clearCurrentBet();
+		this.gf.alterCurrentBetLabel(0);
 	}
 	
 	public int totalBetted() {
