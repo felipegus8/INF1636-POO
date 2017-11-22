@@ -47,6 +47,7 @@ public class Gambler extends Player{
 			for(int i=0;i<totalChipsBetted;i++) {
 				this.betChips.add(this.betChips.get(i));
 			}
+		this.totalMoneyAvailable -= totalBetted()/2;
 		} else {
 			System.out.println("i'm afraid i cant let you do that");
 		}

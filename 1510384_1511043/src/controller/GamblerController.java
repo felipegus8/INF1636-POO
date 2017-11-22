@@ -191,6 +191,7 @@ public class GamblerController {
 	public void doubleBet() {
 		this.g.doubleBet();
 		this.gf.alterCurrentBetLabel(totalBetted());
+		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
 	}
 	
 	public void playerWon() {
