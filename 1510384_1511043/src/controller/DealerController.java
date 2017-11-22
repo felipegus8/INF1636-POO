@@ -15,7 +15,7 @@ public class DealerController {
 		this.tf = tf;
 		this.gc = gc;
 		
-		give2Cards();
+		//give2Cards();
 	}
 	
 	private void give2Cards() {

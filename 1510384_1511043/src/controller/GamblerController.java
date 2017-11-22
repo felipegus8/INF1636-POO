@@ -15,7 +15,7 @@ public class GamblerController {
 		this.gf = gf;
 		this.gc = gc;
 		
-		give2Cards();
+		//give2Cards();
 		
 	}
 	
