@@ -18,7 +18,7 @@ public class DealerController {
 		//give2Cards();
 	}
 	
-	private void give2Cards() {
+	public void give2Cards() {
 		drawCardToDealer();
 		paintCardOnScreen("deck1");
 		hit();
@@ -28,8 +28,9 @@ public class DealerController {
 		tf.p.clearImgs();
 		d.resetTotalPoints();
 		d.playerCards.clear();
-		give2Cards();
+		//give2Cards();
 		tf.disableRestart();
+		tf.p.repaint();
 	}
 	
 	public void enableRestart() {

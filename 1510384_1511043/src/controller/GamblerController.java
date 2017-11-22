@@ -25,12 +25,14 @@ public class GamblerController {
 		gf.stopHit.setVisible(false);
 		gf.checkResultWinLose.setVisible(false);
 		g.resetTotalPoints();
-		give2Cards();
+		gf.p.repaint();
+		gf.bet.setEnabled(true);
+		//give2Cards();
 	}
 	
 
 	
-	private void give2Cards() {
+	public void give2Cards() {
 		hit();
 		hit();
 		gf.cardValue.setText(getCorrectTextForCardValue());
@@ -199,6 +201,8 @@ public class GamblerController {
 	}
 	
 	public void didFinishBet() {
-		
+		if(g.totalBetted() > 0) {
+			decideWhoPlaysNext();
+		}
 	}
 }

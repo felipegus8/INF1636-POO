@@ -155,9 +155,16 @@ public class GameController implements ObservadorIF{
 			c.clearCurrentBet();
 		}
 		dc.restart();
-		blockPlayers();
+		//blockPlayers();
 
 		
+	}
+	
+	public void give2CardsToEveryone() {
+		for(GamblerController c: gcs) {
+			c.give2Cards();
+		}
+		dc.give2Cards();
 	}
 	
 	public void decideWhoPlaysNext() {
@@ -167,11 +174,15 @@ public class GameController implements ObservadorIF{
 		/* a round has passed*/
 		if(this.currentPlayer  == 1) {
 			if(this.numRound == 1) {
+				give2CardsToEveryone();
+				
+			}
+			if(this.numRound == 2) {
 				dc.turnCard();
 			}
 			this.numRound++;
 						
-			if(this.numRound == 2) {
+			if(this.numRound == 3) {
 				while(dc.hitOrStand());
 				checkWinner();
 				dc.enableRestart();
@@ -182,8 +193,8 @@ public class GameController implements ObservadorIF{
 			
 		}
 		
-		if(this.numRound != 2) {
-			//blockPlayers();
+		if(this.numRound != 3) {
+			blockPlayers();
 		}
 	}
 
