@@ -87,7 +87,7 @@ public class GameController implements ObservadorIF{
 			totalWidth += width;
 		}
 		
-		//blockPlayers();
+	//	blockPlayers();
 		
 	}
 	
