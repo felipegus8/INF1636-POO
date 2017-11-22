@@ -168,4 +168,12 @@ public class GamblerController {
 		return gf.isStanded;
 	}
 	
+	
+	public void betChip(int value) {
+		g.betChip(value);
+	}
+	
+	public int totalBetted() {
+		return g.totalBetted();
+	}
 }

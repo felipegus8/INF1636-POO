@@ -75,6 +75,7 @@ public class GameController implements ObservadorIF{
 		tf = new TableFrame(0,height + 30);
 		dc = new DealerController(new Dealer(),tf,this);
 		tf.g = this;
+		tf.registerObserver(this);
 		
 		for(int i=0;i<numPlayers;i++) {
 			GamblerFrame gf = new GamblerFrame(width,height,totalWidth,totalHeight);
@@ -184,27 +185,9 @@ public class GameController implements ObservadorIF{
 
 	@Override
 	public void update(int caso, Object obj) {
-		switch(caso) {
-		case 1:
-			break;
-		case 5:
-			
-			break;
-		case 10:
-			break;
-		case 20:
-			break;
-		case 50:
-			break;
-		case 100:
-			break;
-		default:
-			break;
-		}
-		
-	}
-	
-	
+		GamblerController c = gcs.get(this.currentPlayer - 1);
+		c.betChip(caso);	
+	}	
 	
 	
 }

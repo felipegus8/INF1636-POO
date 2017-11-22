@@ -112,26 +112,32 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 		System.out.println(e.getY());
 		if (e.getX() > 750 && e.getX() < 800 && e.getY() > 220 && e.getY() < 274) {
 			System.out.println("FICHA 1");
+			notifyObservers(1,null);
 		}
 		
 		if (e.getX() > 810 && e.getX() < 860 && e.getY() > 220 && e.getY() < 274) {
 			System.out.println("FICHA 5");
+			notifyObservers(5,null);
 		}
 		
 		if (e.getX() > 750 && e.getX() < 800 && e.getY() > 284 && e.getY() < 334) {
 			System.out.println("FICHA 10");
+			notifyObservers(10,null);
 		}
 		
 		if (e.getX() > 810 && e.getX() < 860 && e.getY() > 284 && e.getY() < 334) {
 			System.out.println("FICHA 20");
+			notifyObservers(20,null);
 		}
 		
 		if (e.getX() > 750 && e.getX() < 800 && e.getY() > 342 && e.getY() < 392) {
 			System.out.println("FICHA 50");
+			notifyObservers(50,null);
 		}
 		
 		if (e.getX() > 810 && e.getX() < 860 && e.getY() > 342 && e.getY() < 392) {
 			System.out.println("FICHA 100");
+			notifyObservers(100,null);
 		}
 	
 		
@@ -176,7 +182,7 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	@Override
 	public void notifyObservers(int mensagem, Object obj) {
 		for(ObservadorIF o: observers) {
-			o.update(mensagem, null);
+			o.update(mensagem, obj);
 		}	
 	}
 

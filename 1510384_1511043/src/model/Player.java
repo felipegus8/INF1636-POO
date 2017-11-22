@@ -5,7 +5,7 @@ import other.Status;
 
 public abstract class Player {
 	public ArrayList<Card> playerCards = new ArrayList<Card>();
-	protected Chip[] playerChips;
+	protected ArrayList<Chip> playerChips = new ArrayList<Chip>();
 	protected int totalPointCount = 0;
 	protected int totalPointCountWithAce = 0;
 	protected int totalMoneyBetted;
