@@ -24,6 +24,7 @@ public class GamblerController {
 		gf.isStanded = false;
 		gf.stopHit.setVisible(false);
 		gf.checkResultWinLose.setVisible(false);
+		gf.hideScoreLabel();
 		g.resetTotalPoints();
 		gf.p.repaint();
 		gf.bet.setEnabled(true);
@@ -35,6 +36,7 @@ public class GamblerController {
 	public void give2Cards() {
 		hit();
 		hit();
+		gf.showScoreLabel();
 		gf.cardValue.setText(getCorrectTextForCardValue());
 	}
 	
@@ -188,6 +190,7 @@ public class GamblerController {
 	
 	public void doubleBet() {
 		this.g.doubleBet();
+		this.gf.alterCurrentBetLabel(totalBetted());
 	}
 	
 	public void playerWon() {

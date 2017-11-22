@@ -43,8 +43,12 @@ public class Gambler extends Player{
 	
 	public void doubleBet() {
 		int totalChipsBetted = this.betChips.size();
-		for(int i=0;i<totalChipsBetted;i++) {
-			this.betChips.add(this.betChips.get(i));
+		if(totalMoneyAvailable >= totalBetted() * 2) {
+			for(int i=0;i<totalChipsBetted;i++) {
+				this.betChips.add(this.betChips.get(i));
+			}
+		} else {
+			System.out.println("i'm afraid i cant let you do that");
 		}
 	}
 	
