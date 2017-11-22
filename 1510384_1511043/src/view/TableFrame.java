@@ -110,29 +110,29 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	//	System.out.println("funcionou por algum motivo");
 		System.out.println(e.getX());
 		System.out.println(e.getY());
-//		if (e.getX() > 725 && e.getX() < 775 && e.getY() > 200 && e.getY() < 250) {
-//			System.out.println("FICHA 1");
-//		}
-//		
-//		if (e.getX() > 785 && e.getX() < 835 && e.getY() > 200 && e.getY() < 250) {
-//			System.out.println("FICHA 5");
-//		}
-//		
-//		if (e.getX() > 725 && e.getX() < 775 && e.getY() > 260 && e.getY() < 310) {
-//			System.out.println("FICHA 10");
-//		}
-//		
-//		if (e.getX() > 785 && e.getX() < 835 && e.getY() > 260 && e.getY() < 310) {
-//			System.out.println("FICHA 20");
-//		}
-//		
-//		if (e.getX() > 725 && e.getX() < 775 && e.getY() > 320 && e.getY() < 370) {
-//			System.out.println("FICHA 50");
-//		}
-//		
-//		if (e.getX() > 785 && e.getX() < 835 && e.getY() > 320 && e.getY() < 370) {
-//			System.out.println("FICHA 100");
-//		}
+		if (e.getX() > 750 && e.getX() < 800 && e.getY() > 220 && e.getY() < 274) {
+			System.out.println("FICHA 1");
+		}
+		
+		if (e.getX() > 810 && e.getX() < 860 && e.getY() > 220 && e.getY() < 274) {
+			System.out.println("FICHA 5");
+		}
+		
+		if (e.getX() > 750 && e.getX() < 800 && e.getY() > 284 && e.getY() < 334) {
+			System.out.println("FICHA 10");
+		}
+		
+		if (e.getX() > 810 && e.getX() < 860 && e.getY() > 284 && e.getY() < 334) {
+			System.out.println("FICHA 20");
+		}
+		
+		if (e.getX() > 750 && e.getX() < 800 && e.getY() > 342 && e.getY() < 392) {
+			System.out.println("FICHA 50");
+		}
+		
+		if (e.getX() > 810 && e.getX() < 860 && e.getY() > 342 && e.getY() < 392) {
+			System.out.println("FICHA 100");
+		}
 	
 		
 
@@ -174,9 +174,10 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	}
 
 	@Override
-	public void notifyObservers(String mensagem, Object obj) {
-		// TODO Auto-generated method stub
-		
+	public void notifyObservers(int mensagem, Object obj) {
+		for(ObservadorIF o: observers) {
+			o.update(mensagem, null);
+		}	
 	}
 
 	

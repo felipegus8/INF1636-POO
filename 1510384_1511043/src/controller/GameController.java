@@ -1,13 +1,14 @@
 package controller;
 import model.*;
 import view.*;
+import other.ObservadorIF;
 import other.Suits;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class GameController {
+public class GameController implements ObservadorIF{
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private TableFrame tf;
 	private DealerController dc;
@@ -112,7 +113,6 @@ public class GameController {
 		for(int i=0;i<numPlayers;i++) {
 			GamblerController c = gcs.get(i);
 			if(dc.checkIfPlayerWasBusted() && c.checkIfPlayerWasBusted()) {
-				//draw
 				//NOT A DRAW HERE.PLAYER LOSES IF BOTH ARE BUSTED.
 		//		c.gf.checkResultWinLose.setText("Draw");
 		//		c.gf.addDidWonOrLostLabel();
@@ -159,7 +159,6 @@ public class GameController {
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
 		
 		
-		
 		/* a round has passed*/
 		if(this.currentPlayer  == 1) {
 			if(this.numRound == 1) {
@@ -181,6 +180,28 @@ public class GameController {
 		if(this.numRound != 2) {
 			blockPlayers();
 		}
+	}
+
+	@Override
+	public void update(int caso, Object obj) {
+		switch(caso) {
+		case 1:
+			break;
+		case 5:
+			
+			break;
+		case 10:
+			break;
+		case 20:
+			break;
+		case 50:
+			break;
+		case 100:
+			break;
+		default:
+			break;
+		}
+		
 	}
 	
 	
