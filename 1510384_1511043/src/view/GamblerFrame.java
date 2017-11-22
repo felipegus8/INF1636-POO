@@ -136,4 +136,16 @@ public class GamblerFrame extends JFrame{
 		p.add(checkResultWinLose);
 		p.validate();
 	}
+	
+	public void alterTotalMoneyLabel(int totalMoneyPlayerHas) {
+		this.totalCoinsGambler.setText("Total Money" + Integer.toString(totalMoneyPlayerHas));
+		totalCoinsGambler.validate();
+		p.validate();
+	}
+	
+	public void alterCurrentBetLabel(int currentBet) {
+		this.totalMoneyBetted.setText("Money Betted" + Integer.toString(currentBet));
+		totalMoneyBetted.validate();
+		p.validate();
+	}
 }
