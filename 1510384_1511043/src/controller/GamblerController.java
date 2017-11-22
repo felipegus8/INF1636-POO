@@ -15,6 +15,8 @@ public class GamblerController {
 		this.gf = gf;
 		this.gc = gc;
 		
+		this.gf.disableBetButton();
+		
 		//give2Cards();
 		
 	}
@@ -27,7 +29,7 @@ public class GamblerController {
 		gf.hideScoreLabel();
 		g.resetTotalPoints();
 		gf.p.repaint();
-		gf.bet.setEnabled(true);
+		//gf.bet.setEnabled(true);
 		//give2Cards();
 	}
 	
@@ -210,5 +212,13 @@ public class GamblerController {
 			gf.bet.setEnabled(false);
 			decideWhoPlaysNext();
 		}
+	}
+	
+	public void enableBet() {
+		gf.enableBetButton();
+	}
+	
+	public void disableBet() {
+		gf.disableBetButton();
 	}
 }

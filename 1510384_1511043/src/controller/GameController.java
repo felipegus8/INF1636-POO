@@ -72,6 +72,7 @@ public class GameController implements ObservadorIF{
 		double totalWidth = 0.0;
 		double totalHeight = 0.0;
 		
+		
 		tf = new TableFrame(0,height + 30);
 		dc = new DealerController(new Dealer(),tf,this);
 		tf.g = this;
@@ -87,6 +88,8 @@ public class GameController implements ObservadorIF{
 			totalWidth += width;
 		}
 		
+		blockBet();
+
 	//	blockPlayers();
 		
 	}
@@ -108,9 +111,9 @@ public class GameController implements ObservadorIF{
 			
 			GamblerController c = gcs.get(i);
 			if(this.currentPlayer != c.g.numGambler) {
-				c.enableBet();
+				c.disableBet();
 			} else {
-				c.unblockHitAndStand();
+				c.enableBet();
 			}
 		}
 	}
@@ -167,6 +170,7 @@ public class GameController implements ObservadorIF{
 			c.clearCurrentBet();
 		}
 		dc.restart();
+		blockBet();
 		//blockPlayers();
 
 		
@@ -203,11 +207,14 @@ public class GameController implements ObservadorIF{
 				return;
 			}
 			
-			if(this.numRound == 1) {
-				
-			}
 			
 		}
+		
+		if(this.numRound == 1) {
+			System.out.println("em swift inclusive");
+			blockBet();
+		}
+		
 		
 		if(this.numRound == 2) {
 			blockPlayers();
