@@ -183,4 +183,18 @@ public class GamblerController {
 	public int totalBetted() {
 		return g.totalBetted();
 	}
+	
+	public void doubleBet() {
+		this.g.doubleBet();
+	}
+	
+	public void playerWon() {
+		this.g.playerWon();
+		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
+	}
+	
+	public void playerDrawed() {
+		this.g.playerDrawed();
+		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
+	}
 }

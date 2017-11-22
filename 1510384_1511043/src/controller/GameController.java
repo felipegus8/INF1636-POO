@@ -119,6 +119,7 @@ public class GameController implements ObservadorIF{
 		//		c.gf.addDidWonOrLostLabel();
 			} else if(dc.checkIfPlayerWasBusted()) {
 				c.gf.checkResultWinLose.setText("You Won");
+				c.playerWon();
 				c.gf.addDidWonOrLostLabel();
 				//player wins
 			} else if(c.checkIfPlayerWasBusted()){
@@ -127,6 +128,7 @@ public class GameController implements ObservadorIF{
 				if(c.totalPointsFinal() > dc.totalPoints()) {
 					//player wins
 					c.gf.checkResultWinLose.setText("You Won");
+					c.playerWon();
 					c.gf.addDidWonOrLostLabel();
 				} else if(c.totalPointsFinal() < dc.totalPoints()) {
 					//dealer wins
@@ -134,6 +136,7 @@ public class GameController implements ObservadorIF{
 					c.gf.addDidWonOrLostLabel();
 				} else {
 					c.gf.checkResultWinLose.setText("Draw");
+					c.playerDrawed();
 					c.gf.addDidWonOrLostLabel();
 					//draw
 				} 

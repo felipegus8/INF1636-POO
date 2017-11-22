@@ -37,6 +37,21 @@ public class Gambler extends Player{
 		this.betChips.clear();
 	}
 	
+	public void playerWon() {
+		this.totalMoneyAvailable += 2*this.totalBetted();
+	}
+	
+	public void doubleBet() {
+		int totalChipsBetted = this.betChips.size();
+		for(int i=0;i<totalChipsBetted;i++) {
+			this.betChips.add(this.betChips.get(i));
+		}
+	}
+	
+	public void playerDrawed() {
+		this.totalMoneyAvailable += this.totalBetted();
+	}
+	
 	@Override
 	protected void hit() {
 		// TODO Auto-generated method stub
