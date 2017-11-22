@@ -197,4 +197,8 @@ public class GamblerController {
 		this.g.playerDrawed();
 		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
 	}
+	
+	public void didFinishBet() {
+		
+	}
 }

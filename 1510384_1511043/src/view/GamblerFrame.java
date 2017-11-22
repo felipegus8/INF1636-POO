@@ -24,6 +24,7 @@ public class GamblerFrame extends JFrame{
 	public JButton hit = new JButton("HIT");
 	public JButton stand = new JButton("STAND");
 	public JButton doubleBet = new JButton ("DOUBLE");
+	public JButton bet = new JButton("BET");
 	public JLabel cardValue = new JLabel("0");
 	public JLabel stopHit = new JLabel("BUSTED");
 	public JLabel checkResultWinLose = new JLabel ("You Won");
@@ -109,7 +110,16 @@ public class GamblerFrame extends JFrame{
 				gc.decideWhoPlaysNext();
 			}
 		});
-		
+		bet.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				  gc.didFinishBet();
+				  bet.setEnabled(false);
+				  
+			}
+			
+		});
 		
 		this.setLocation(po);
 
@@ -127,6 +137,9 @@ public class GamblerFrame extends JFrame{
 		c.gridx = 2;
 		c.gridy = 1;
 		p.add(doubleBet,c);
+		c.gridx = 1;
+		c.gridy = 4;
+		p.add(bet,c);
 		
 		p.add(cardValue);
 		//c.weightx = 0.5;
@@ -154,9 +167,6 @@ public class GamblerFrame extends JFrame{
 	}
 	
 	public void alterCurrentBetLabel(int currentBet) {
-		hit.setEnabled(true);
-		stand.setEnabled(true);
-		doubleBet.setEnabled(true);
 		this.totalMoneyBetted.setText("Money Betted:" + Integer.toString(currentBet));
 		totalMoneyBetted.validate();
 		p.validate();
