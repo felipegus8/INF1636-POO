@@ -171,4 +171,14 @@ public class GamblerFrame extends JFrame{
 		totalMoneyBetted.validate();
 		p.validate();
 	}
+	
+	public void hideScoreLabel() {
+		cardValue.setVisible(false);
+		cardValue.validate();
+	}
+	
+	public void showScoreLabel() {
+		cardValue.setVisible(true);
+		cardValue.validate();
+	}
 }
