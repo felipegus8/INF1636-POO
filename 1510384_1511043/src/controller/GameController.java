@@ -8,7 +8,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 public class GameController implements ObservadorIF{
 	private ArrayList<Card> deck = new ArrayList<Card>();
@@ -188,15 +187,16 @@ public class GameController implements ObservadorIF{
 			}
 		}
 		
-		if(numPlayer == this.currentPlayer) {
-			this.currentPlayer--;
-		}
 		
-		if(numPlayer == 1) {
+		/* if current player goes back to one, the program will that 
+		 * one round has been passed and that's why we need this if
+		 *  */
+		if(numPlayer == 1 || (this.numPlayers -1 > 1 && this.currentPlayer != numPlayer)) {
 			this.playerHasSurrendered = true;
 		}
 		this.numPlayers--;
-		if(this.currentPlayer + 1 == numPlayer) {
+		if(this.currentPlayer == numPlayer) {
+			this.currentPlayer--;
 			decideWhoPlaysNext();
 		}
 	}
