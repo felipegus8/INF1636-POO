@@ -214,6 +214,10 @@ public class GamblerController {
 		}
 	}
 	
+	public void playerSurrendered() {
+		gc.surrenderPlayer(g.numGambler);
+	}
+	
 	public void enableBet() {
 		gf.enableBetButton();
 	}

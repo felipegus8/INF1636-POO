@@ -8,6 +8,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 public class GameController implements ObservadorIF{
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private TableFrame tf;
@@ -18,6 +20,7 @@ public class GameController implements ObservadorIF{
 	private ArrayList<GamblerController> gcs = new ArrayList<GamblerController>();
 	private Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private int currentPlayer = 1;
+	private boolean playerHasSurrendered = false;
 	
 	public GameController(TableFrame tf) {
 		this.tf = tf;
@@ -108,7 +111,6 @@ public class GameController implements ObservadorIF{
 	
 	public void blockBet() {
 		for(int i=0;i<numPlayers;i++) {
-			
 			GamblerController c = gcs.get(i);
 			if(this.currentPlayer != c.g.numGambler) {
 				c.disableBet();
@@ -176,6 +178,29 @@ public class GameController implements ObservadorIF{
 		
 	}
 	
+	public void surrenderPlayer(int numPlayer) {
+		gcs.remove(numPlayer - 1);
+		GamblerFrame removed = pfs.remove(numPlayer - 1);
+		removed.setVisible(false);
+		for(GamblerController c: gcs) {
+			if(c.g.numGambler > numPlayer) {
+				c.g.numGambler--;
+			}
+		}
+		
+		if(numPlayer == this.currentPlayer) {
+			this.currentPlayer--;
+		}
+		
+		if(numPlayer == 1) {
+			this.playerHasSurrendered = true;
+		}
+		this.numPlayers--;
+		if(this.currentPlayer + 1 == numPlayer) {
+			decideWhoPlaysNext();
+		}
+	}
+	
 	public void give2CardsToEveryone() {
 		for(GamblerController c: gcs) {
 			c.give2Cards();
@@ -186,17 +211,21 @@ public class GameController implements ObservadorIF{
 	public void decideWhoPlaysNext() {
 		this.currentPlayer = (currentPlayer%numPlayers) + 1;
 		
-		
 		/* a round has passed*/
 		if(this.currentPlayer  == 1) {
-			if(this.numRound == 1) {
+			
+			if(this.numRound == 1 && this.playerHasSurrendered == false) {
 				give2CardsToEveryone();
 				
 			}
 			if(this.numRound == 2) {
 				dc.turnCard();
 			}
-			this.numRound++;
+			if(this.playerHasSurrendered == false) {
+				this.numRound++;
+			} else {
+				this.playerHasSurrendered = false;
+			}
 						
 			if(this.numRound == 3) {
 				while(dc.hitOrStand());
@@ -210,9 +239,10 @@ public class GameController implements ObservadorIF{
 			
 		}
 		
+		this.playerHasSurrendered = false;
 		if(this.numRound == 1) {
-			System.out.println("em swift inclusive");
 			blockBet();
+			System.out.println("bin ich hier");
 		}
 		
 		

@@ -123,6 +123,16 @@ public class GamblerFrame extends JFrame{
 			
 		});
 		
+		surrender.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gc.playerSurrendered();
+				
+			}
+			
+		});
+		
 		this.setLocation(po);
 
 		GridBagLayout borderL = new GridBagLayout();
