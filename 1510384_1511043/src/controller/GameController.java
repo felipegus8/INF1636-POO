@@ -5,6 +5,10 @@ import other.ObservadorIF;
 import other.Suits;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -20,13 +24,15 @@ public class GameController implements ObservadorIF{
 	private Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private int currentPlayer = 1;
 	private boolean playerHasSurrendered = false;
-	
-	public GameController(TableFrame tf) {
-		this.tf = tf;
-		
+	private BufferedReader bufferedReader;
+	private static final GameController sharedInstance = new GameController();
+ 
+
+	public static GameController getInstance() {
+		return sharedInstance;
 	}
 	
-	public GameController() {
+	private GameController() {
 		FirstScreen fs = new FirstScreen(this);
 		fs.setTitle("First Screen");
 		fs.setVisible(true);
@@ -257,5 +263,208 @@ public class GameController implements ObservadorIF{
 		c.betChip(valor);	
 	}	
 	
+	
+	public void save(String filePath) {		
+		try {
+			PrintWriter writer = new PrintWriter(filePath + ".txt", "UTF-8");
+			
+			// Store table
+			
+			writer.printf("Dealer");
+			writer.println();
+			if (dc.checkIfPlayerHasAce() && !dc.checkIfAceMaxBusts()) {
+				writer.printf("Points  "+ dc.totalPoints() + "/" + dc.totalPointsWithAce());
+			}
+			else {
+			writer.printf("Points " + dc.totalPoints());
+			}
+			writer.println();
+			
+			writer.printf("Cards");
+			for(Card card : dc.d.playerCards) {
+				if (card.cardNumber < 10) {
+				writer.printf(" " + card.cardNumber + " " + card.suit);
+				}
+				else {
+					writer.printf(" " + card.cardName + " " + card.suit);
+				}
+			}
+			
+			writer.println();
+			writer.println();
+			
+			// Store players
+			
+			writer.printf("Gamblers " + numPlayers);
+			writer.println();
+			writer.printf("Current Player " + currentPlayer);
+			writer.println();
+			for (GamblerController gambler: gcs) {				
+				writer.printf("Chips " + gambler.g.totalMoneyAvailable);
+				writer.println();
+				
+				writer.printf("Bet " + gambler.totalBetted());
+				writer.println();
+				
+				writer.printf("Points " + gambler.getCorrectTextForCardValue());
+				writer.println();
+				if (gambler.isStanded()) {
+					writer.printf("Standed");
+				}
+				if (gambler.checkIfPlayerWasBusted()) {
+					writer.printf("Busted");
+				}
+				
+				writer.println();
+				
+				writer.printf("Cards");
+				for(Card card : gambler.g.playerCards) {
+					if (card.cardNumber < 10) {
+						writer.printf(" " + card.cardNumber + " " + card.suit);
+						}
+						else {
+							writer.printf(" " + card.cardName + " " + card.suit);
+						}
+				}
+				writer.println();
+				writer.println();
+			}
+			
+			writer.printf("End");
+			writer.close();
+		} 
+		catch (IOException e) {
+			System.out.println("GameController : save : error = " + e.getMessage());
+			System.exit(1);
+		}
+		
+	}
+	/*
+	public void retrieveSavedGame(String filePath) {
+		try {
+			bufferedReader = new BufferedReader(new FileReader(filePath));
+		    String currentLine = bufferedReader.readLine();
+		    String[] currentComponents = currentLine.split(" ");
+		    
+		    while (currentLine != null) {
+		    		switch (currentComponents[0]) {
+		    		case "Dealer":
+		    			table = new Table();
+
+		    			tableView = new TableScreen(screenSize.getWidth()/2, 200);
+		    			tableView.setListeners(this);
+		    			tableView.register(this);
+		    			tableView.setVisible(true);
+		    			initializeDeck();
+		    			
+		    			currentLine = bufferedReader.readLine();
+				    currentComponents = currentLine.split(" ");
+				    
+				    if (currentComponents[0].compareTo("Points") == 0)
+				    		table.addPoints(Integer.parseInt(currentComponents[1]));
+				    else
+				    		break;
+				    
+				    currentLine = bufferedReader.readLine();
+				    currentComponents = currentLine.split(" ");
+				    
+				    if (currentComponents[0].compareTo("Cards") == 0) {
+				    		for(int i = 1; i < currentComponents.length; i += 2) {
+				    			Card newCard = new Card(Suit.getSuitWith(currentComponents[i + 1]), Integer.parseInt(currentComponents[i]));
+				    			table.cards.add(newCard);
+				    			
+				    			deck.remove(newCard);
+				    		}
+				    }
+				    
+		    			break;
+		    			
+		    		case "Gamblers":
+		    			numberOfPlayers = Integer.parseInt(currentComponents[1]);
+		    		    currentPlayer = -1;
+		    			gamblersControllers = new ArrayList<GamblerController>();
+		    			
+		    			for (int i = 0; i < numberOfPlayers; i++) {
+		    				gamblersControllers.add(new GamblerController(i));
+		    				GamblerController currentGambler = gamblersControllers.get(i);
+		    				
+		    				currentLine = bufferedReader.readLine();
+						currentComponents = currentLine.split(" ");
+						
+						for (int j = 0; j < 5; j++) {
+							switch (currentComponents[0]) {
+							case "Chips":
+								currentGambler.setPlayerChips(Integer.parseInt(currentComponents[1]));;
+								break;
+								
+							case "Bet":
+								currentGambler.setPlayerBet(Integer.parseInt(currentComponents[1]));
+								break;
+								
+							case "Points":
+								currentGambler.setPlayerPoints(Integer.parseInt(currentComponents[1]));
+								break;
+								
+							case "State":
+								currentGambler.setPlayerState(PlayerState.getStateWith(Integer.parseInt(currentComponents[1])));
+								break;
+								
+							case "Cards":
+								ArrayList<Card> cards = new ArrayList<Card>();
+								
+								for(int k = 1; k < currentComponents.length; k += 2) {
+									Card newCard = new Card(Suit.getSuitWith(currentComponents[k + 1]), Integer.parseInt(currentComponents[k]));
+									cards.add(newCard);
+									
+					    				deck.remove(newCard);
+								}
+								
+								currentGambler.setPlayerCards(cards);
+								break;
+								
+							default:
+				    				System.out.println("GameController : retrieveSavedGame : invalid content");
+				    				System.exit(1);
+							}
+							
+							currentLine = bufferedReader.readLine();
+							currentComponents = currentLine.split(" ");
+						}
+		    			}
+		    			
+		    			break;
+		    			
+		    		default:
+		    			System.out.println("GameController : retrieveSavedGame : invalid content");
+		    			System.exit(1);
+		    		}
+		        
+		    		bufferedReader.readLine();
+		        if (( currentLine = bufferedReader.readLine()) != null)
+		        		currentComponents = currentLine.split(" ");
+		    }
+		}
+		catch (IOException e) {
+			System.out.println("GameController : retrieveSavedGame : error = " + e.getMessage());
+			System.exit(1);			
+		}
+		
+		updateUI();		
+		
+		boolean isEndOfRound = true;
+		for (int i = 0; i < numberOfPlayers; i++) {
+			gamblersControllers.get(i).updateUI();
+			
+			PlayerState playerState = gamblersControllers.get(i).getPlayerState();
+			isEndOfRound = playerState != PlayerState.Playing || playerState != PlayerState.Waiting;
+		}
+		
+		if (gamblersControllers.get(0).getPlayerState() == PlayerState.Betting)
+			nextPlayerToBet();
+		
+		if (isEndOfRound)
+			tableView.showResetOption();
+	}
+	*/
 	
 }

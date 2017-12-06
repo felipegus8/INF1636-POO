@@ -32,6 +32,7 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 
 	public TableFramePanel p = null;
 	private JButton restart = new JButton("RESTART");
+	private JButton saveGame = new JButton("SAVE");
 	public JLabel cardValue = new JLabel("0");
 	public GameController g = null;
 	
@@ -77,7 +78,19 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 			
 			
 		});
+		saveGame.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardValue.setVisible(false);
+				g.save("save");
+			}
+			
+			
+		});
+		
 		this.p.add(restart);
+		this.p.add(saveGame);
 		setSize(LARG_DEFAULT,ALT_DEFAULT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Table");

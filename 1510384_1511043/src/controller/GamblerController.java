@@ -87,7 +87,23 @@ public class GamblerController {
 		g.addPoint(drawed);
 		}
 		else {
-			if (drawed.cardNumber > 10) {
+			System.out.println(drawed.cardNumber);
+			System.out.println(drawed.cardName);
+			if (drawed.cardNumber >= 10) {
+				switch (drawed.cardNumber) {
+				case 10:
+					drawed.cardName = 'T';
+					break;
+				case 11:
+					drawed.cardName = 'J';
+					break;
+				case 12:
+					drawed.cardName = 'Q';
+					break;
+				case 13:
+					drawed.cardName = 'K';
+					break;
+				}
 				drawed.cardNumber = 10;
 			}
 			g.addPoint(drawed);

@@ -20,12 +20,13 @@ public class FirstScreen extends JFrame {
 	JButton twoPlayers = new JButton("2");
 	JButton threePlayers = new JButton("3");
 	JButton fourPlayers = new JButton("4");
+	JButton loadGame = new JButton("Load Game");
 	
 	JPanel p = new JPanel();
 	
 	GameController g;
 	
-	private final int LARG_DEFAULT=891; public final int ALT_DEFAULT=707;
+	private final int LARG_DEFAULT=891; public final int ALT_DEFAULT=200;
 	
 	public FirstScreen(GameController g) {
 		
@@ -35,7 +36,7 @@ public class FirstScreen extends JFrame {
 		p.add(twoPlayers);
 		p.add(threePlayers);
 		p.add(fourPlayers);
-		
+		p.add(loadGame);
 		this.g= g;
 		
 		onePlayer.addActionListener(new ButtonListener(g,1,this));

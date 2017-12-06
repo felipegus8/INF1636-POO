@@ -26,6 +26,7 @@ public class GamblerFrame extends JFrame{
 	public JButton doubleBet = new JButton ("DOUBLE");
 	public JButton bet = new JButton("BET");
 	public JButton surrender = new JButton ("SURRENDER");
+	public JButton buyChips = new JButton("BUY");
 	public JLabel cardValue = new JLabel("0");
 	public JLabel stopHit = new JLabel("BUSTED");
 	public JLabel checkResultWinLose = new JLabel ("You Won");
@@ -123,6 +124,15 @@ public class GamblerFrame extends JFrame{
 			
 		});
 		
+		buyChips.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Aqui avisar que acabou de comprar as fichas.				  
+			}
+			
+		});
+		
 		surrender.addActionListener(new ActionListener() {
 
 			@Override
@@ -154,6 +164,9 @@ public class GamblerFrame extends JFrame{
 		c.gridx = 1;
 		c.gridy = 4;
 		p.add(surrender,c);
+		c.gridx = 2;
+		c.gridy = 4;
+		p.add(buyChips,c);
 		p.add(cardValue);
 		
 		c.gridx = 1;
