@@ -62,4 +62,8 @@ public abstract class Player {
 	public void setTotalMoneyBetted(int newBet) {
 		this.totalMoneyBetted = newBet;
 	}
+	
+	public int getTotalMoneyBetted() {
+		return this.totalMoneyBetted;
+	}
 }

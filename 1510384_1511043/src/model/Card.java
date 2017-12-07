@@ -12,7 +12,6 @@ public class Card {
 	}
 	
 	public Card(String suit,String cardNumberNew) {
-		System.out.println("O QUE CHEGOU" + cardNumberNew);
 		switch (suit) {
 		case "spades":
 			this.suit = Suits.spades;
@@ -27,15 +26,13 @@ public class Card {
 			this.suit = Suits.hearts;
 			break;
 		}
-		System.out.println(cardNumberNew);
-		if (cardNumberNew !=  "T" && cardNumberNew != "J" && cardNumberNew != "Q" && cardNumberNew != "K") {
-			this.cardNumber = Integer.valueOf(cardNumberNew);
+		if (cardNumberNew.equals("T") || cardNumberNew.equals("J") || cardNumberNew.equals("Q") || cardNumberNew.equals("K")) {
+			this.cardNumber = 10;
 			this.cardName = cardNumberNew.charAt(0);
 		}
 		else {
-			this.cardNumber = 10;
-		}
-		
-	}
-	
+			this.cardNumber = Integer.valueOf(cardNumberNew);
+			this.cardName = cardNumberNew.charAt(0);
+		}	
+	}	
 }

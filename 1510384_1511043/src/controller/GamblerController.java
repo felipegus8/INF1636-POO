@@ -87,8 +87,6 @@ public class GamblerController {
 		g.addPoint(drawed);
 		}
 		else {
-			System.out.println(drawed.cardNumber);
-			System.out.println(drawed.cardName);
 			if (drawed.cardNumber >= 10) {
 				switch (drawed.cardNumber) {
 				case 10:
@@ -243,21 +241,26 @@ public class GamblerController {
 	}
 	
 	public void updateUIAfterLoad() {
+		System.out.println(getCorrectTextForCardValue());
 		gf.cardValue.setText(getCorrectTextForCardValue());
 		gf.cardValue.validate();
 		gf.totalCoinsGambler.setText("Total Money:" + String.valueOf(g.totalMoneyAvailable));
-		gf.totalMoneyBetted.setText("Money Betted:" + String.valueOf(g.totalBetted()));
+		gf.totalMoneyBetted.setText("Money Betted:" + String.valueOf(g.getTotalMoneyBetted()));
 		for (Card c:g.playerCards) {
-			String s = null,n;
+			String s = null,n = null;
 			switch (c.suit) {
 			case hearts:
 				s="h";
+				break;
 			case spades:
 				s = "s";
+				break;
 			case diamonds:
 				s = "d";
+				break;
 			case clubs:
 				s = "c";
+				break;
 			}
 			if (c.cardNumber < 10) {
 				n = String.valueOf(c.cardNumber);
@@ -266,7 +269,6 @@ public class GamblerController {
 				n = String.valueOf(c.cardName);
 			}
 		String cardImage =  n + s;
-		System.out.println(cardImage);
 		gf.p.paintCard(cardImage);
 		}
 	}

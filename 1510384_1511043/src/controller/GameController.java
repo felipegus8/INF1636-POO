@@ -279,9 +279,9 @@ public class GameController implements ObservadorIF{
 			writer.printf("Points " + dc.totalPoints());
 			}
 			writer.println();
-			
 			writer.printf("Cards");
 			for(Card card : dc.d.playerCards) {
+				System.out.println(card.cardNumber);
 				if (card.cardNumber < 10) {
 				writer.printf(" " + card.cardNumber + " " + card.suit);
 				}
@@ -308,15 +308,6 @@ public class GameController implements ObservadorIF{
 				
 				writer.printf("Points " + gambler.getCorrectTextForCardValue());
 				writer.println();
-				if (gambler.isStanded()) {
-					writer.printf("Standed");
-				}
-				if (gambler.checkIfPlayerWasBusted()) {
-					writer.printf("Busted");
-				}
-				
-				writer.println();
-				
 				writer.printf("Cards");
 				for(Card card : gambler.g.playerCards) {
 					if (card.cardNumber < 10) {
@@ -376,14 +367,12 @@ public class GameController implements ObservadorIF{
 				    if (currentComponents[0].compareTo("Cards") == 0) {
 				   
 				    		for(int i = 1; i < currentComponents.length; i += 2) {
-				    			System.out.println("O QUE PASSOU" + currentComponents[i]);
 				    			 Card newCard = new Card(currentComponents[i + 1],currentComponents[i]);
-				    			 dc.d.playerCards.add(newCard);
 				    			 dc.d.addPoint(newCard);				    			
 				    			 deck.remove(newCard);
 				    		}
 				    }
-				    
+				    dc.updateDealerUI();
 		    			break;
 		    			
 		    		case "Gamblers":
@@ -407,11 +396,10 @@ public class GameController implements ObservadorIF{
 		    			for (int i = 0; i < numPlayers; i++) {
 		    				currentLine = bufferedReader.readLine();
 						currentComponents = currentLine.split(" ");
-						
+						GamblerController current = gcs.get(i);
+						current.g = new Gambler(i);
 						for (int j = 0; j < 4; j++) {
 							//4 porque é a QTD de informacoes a ser lida do aquivo
-							GamblerController current = gcs.get(i);
-							current.g = new Gambler(i);
 							switch (currentComponents[0]) {
 							case "Chips":
 								current.g.totalMoneyAvailable = (Integer.parseInt(currentComponents[1]));
@@ -438,15 +426,10 @@ public class GameController implements ObservadorIF{
 					    				deck.remove(newCard);
 								}
 								break;
-								
-						//	default:
-				    	//			System.out.println("GameController : retrieveSavedGame : invalid content");
-				    	//			System.exit(1);
 							}
-							
+							current.updateUIAfterLoad();
 							currentLine = bufferedReader.readLine();
 							currentComponents = currentLine.split(" ");
-							current.updateUIAfterLoad();
 						}
 		    			}
 		    			
@@ -456,9 +439,9 @@ public class GameController implements ObservadorIF{
 		    			System.out.println("GameController : retrieveSavedGame : invalid content");
 		    			System.exit(1);
 		    		}
-		        
 		    		bufferedReader.readLine();
-		        if (( currentLine = bufferedReader.readLine()) != null)
+		    		currentLine = bufferedReader.readLine();
+		    		if (currentLine != null)
 		        		currentComponents = currentLine.split(" ");
 		    }
 		}

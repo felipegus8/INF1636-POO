@@ -8,7 +8,7 @@ public class DealerController {
 	Dealer d = null;
 	TableFrame tf = null;
 	GameController gc = null;
-	
+	public static boolean isFirstDealerCard = true;
 	
 	public DealerController(Dealer d, TableFrame tf, GameController gc) {
 		this.d = d;
@@ -172,6 +172,40 @@ public class DealerController {
 			tf.cardValue.setText(String.valueOf(this.totalPoints()) + "/" + String.valueOf(this.totalPointsWithAce()));
 		}
 		paintCardOnScreen(imageString);
-		
 	}
+	
+	public void updateDealerUI() {
+		for (Card c:d.playerCards) {
+			String s = null,n = null;
+			switch (c.suit) {
+			case hearts:
+				s="h";
+				break;
+			case spades:
+				s = "s";
+				break;
+			case diamonds:
+				s = "d";
+				break;
+			case clubs:
+				s = "c";
+				break;
+			}
+			if (c.cardNumber < 10) {
+				n = String.valueOf(c.cardNumber);
+			}
+			else {
+				n = String.valueOf(c.cardName);
+			}
+			
+		String cardImage =  n + s;
+		if(isFirstDealerCard) {
+			paintCardOnScreen("deck1");
+		}
+		else {
+		paintCardOnScreen(cardImage);
+		}
+		isFirstDealerCard = false;
+	}
+}
 }
