@@ -1,28 +1,27 @@
 Dealer
-Points 10
-Cards 6 spades 4 diamonds
+Points 16
+Cards 8 diamonds 8 spades
 
 Gamblers 4
 Current Player 1
 Chips 9900
 Bet 100
-Points 20
+Points 12
+Cards J spades 2 hearts
 
-Cards J diamonds K spades
+Chips 9900
+Bet 100
+Points 17
+Cards 7 hearts J diamonds
 
-Chips 9950
-Points 7
+Chips 9900
+Bet 100
+Points 12
+Cards Q diamonds 2 spades
 
-Cards 3 diamonds 4 clubs
-
-Chips 9950
-Points 20
-
-Cards T diamonds K hearts
-
-Chips 9950
-Points 13
-
-Cards T clubs 3 hearts
+Chips 9900
+Bet 100
+Points 9
+Cards 6 clubs 3 diamonds
 
 End
