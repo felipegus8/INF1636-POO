@@ -2,7 +2,8 @@ package view;
 
 import javax.swing.JFrame;
 
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -38,6 +39,13 @@ public class FirstScreen extends JFrame {
 		p.add(fourPlayers);
 		p.add(loadGame);
 		this.g= g;
+		loadGame.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				g.retrieveSavedGame("save.txt");
+			}
+		});
 		
 		onePlayer.addActionListener(new ButtonListener(g,1,this));
 		twoPlayers.addActionListener(new ButtonListener(g,2,this));

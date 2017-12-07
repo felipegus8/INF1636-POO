@@ -241,4 +241,33 @@ public class GamblerController {
 	public void disableBet() {
 		gf.disableBetButton();
 	}
+	
+	public void updateUIAfterLoad() {
+		gf.cardValue.setText(getCorrectTextForCardValue());
+		gf.cardValue.validate();
+		gf.totalCoinsGambler.setText("Total Money:" + String.valueOf(g.totalMoneyAvailable));
+		gf.totalMoneyBetted.setText("Money Betted:" + String.valueOf(g.totalBetted()));
+		for (Card c:g.playerCards) {
+			String s = null,n;
+			switch (c.suit) {
+			case hearts:
+				s="h";
+			case spades:
+				s = "s";
+			case diamonds:
+				s = "d";
+			case clubs:
+				s = "c";
+			}
+			if (c.cardNumber < 10) {
+				n = String.valueOf(c.cardNumber);
+			}
+			else {
+				n = String.valueOf(c.cardName);
+			}
+		String cardImage =  n + s;
+		System.out.println(cardImage);
+		gf.p.paintCard(cardImage);
+		}
+	}
 }

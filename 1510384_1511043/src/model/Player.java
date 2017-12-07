@@ -50,4 +50,16 @@ public abstract class Player {
 	public int getTotalPointCountWithAce() {
 		return this.totalPointCountWithAce;
 	}
+	
+	public void setTotalPoints(int newPoints) {
+		this.totalPointCount = newPoints;
+	}
+	
+	public void setTotalPointsWithAce(int newPoints) {
+		this.totalPointCountWithAce = newPoints;
+	}
+	
+	public void setTotalMoneyBetted(int newBet) {
+		this.totalMoneyBetted = newBet;
+	}
 }

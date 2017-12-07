@@ -339,7 +339,7 @@ public class GameController implements ObservadorIF{
 		}
 		
 	}
-	/*
+	
 	public void retrieveSavedGame(String filePath) {
 		try {
 			bufferedReader = new BufferedReader(new FileReader(filePath));
@@ -349,86 +349,104 @@ public class GameController implements ObservadorIF{
 		    while (currentLine != null) {
 		    		switch (currentComponents[0]) {
 		    		case "Dealer":
-		    			table = new Table();
-
-		    			tableView = new TableScreen(screenSize.getWidth()/2, 200);
-		    			tableView.setListeners(this);
-		    			tableView.register(this);
-		    			tableView.setVisible(true);
-		    			initializeDeck();
-		    			
-		    			currentLine = bufferedReader.readLine();
-				    currentComponents = currentLine.split(" ");
-				    
-				    if (currentComponents[0].compareTo("Points") == 0)
-				    		table.addPoints(Integer.parseInt(currentComponents[1]));
+		    		double height = this.screenSize.getHeight() / 3;
+				tf = new TableFrame(0,height + 30);
+				dc = new DealerController(new Dealer(),tf,this);
+				dc.d = new Dealer();
+				tf.g = this;
+				tf.registerObserver(this);
+		    		currentLine = bufferedReader.readLine();
+				currentComponents = currentLine.split(" ");
+				    if (currentComponents[0].compareTo("Points") == 0)  {
+				    		tf.cardValue.setText(currentComponents[1]);
+				    	    if (currentComponents[1].indexOf('/') > 0) {
+				    		    String [] bothPoints = currentComponents[1].split("/");
+				    		    dc.d.setTotalPoints(Integer.parseInt(bothPoints[0]));
+				    		    dc.d.setTotalPointsWithAce(Integer.parseInt(bothPoints[1]));
+				         }
+				    	    else {
+				    	    		dc.d.setTotalPoints(Integer.parseInt(currentComponents[1]));
+				    	    }
+				    }
 				    else
 				    		break;
 				    
 				    currentLine = bufferedReader.readLine();
 				    currentComponents = currentLine.split(" ");
-				    
 				    if (currentComponents[0].compareTo("Cards") == 0) {
+				   
 				    		for(int i = 1; i < currentComponents.length; i += 2) {
-				    			Card newCard = new Card(Suit.getSuitWith(currentComponents[i + 1]), Integer.parseInt(currentComponents[i]));
-				    			table.cards.add(newCard);
-				    			
-				    			deck.remove(newCard);
+				    			System.out.println("O QUE PASSOU" + currentComponents[i]);
+				    			 Card newCard = new Card(currentComponents[i + 1],currentComponents[i]);
+				    			 dc.d.playerCards.add(newCard);
+				    			 dc.d.addPoint(newCard);				    			
+				    			 deck.remove(newCard);
 				    		}
 				    }
 				    
 		    			break;
 		    			
 		    		case "Gamblers":
-		    			numberOfPlayers = Integer.parseInt(currentComponents[1]);
-		    		    currentPlayer = -1;
-		    			gamblersControllers = new ArrayList<GamblerController>();
-		    			
-		    			for (int i = 0; i < numberOfPlayers; i++) {
-		    				gamblersControllers.add(new GamblerController(i));
-		    				GamblerController currentGambler = gamblersControllers.get(i);
-		    				
+		    		this.numPlayers = Integer.parseInt(currentComponents[1]);
+				double width = this.screenSize.getWidth()/(numPlayers + 1) + 50;	
+				double totalWidth = 0.0;
+				double totalHeight = 0.0;
+				height = this.screenSize.getHeight() / 3;
+		    		for(int i=0;i<numPlayers;i++) {
+		    				GamblerFrame gf = new GamblerFrame(width,height,totalWidth,totalHeight);
+		    				gf.setTitle("Player " + String.valueOf(i + 1));
+		    				GamblerController gc = new GamblerController(new Gambler(i + 1),gf,this);
+		    				gf.gc = gc;
+		    				gcs.add(gc);
+		    				pfs.add(gf);
+		    				totalWidth += width;
+		    			}
+		    			currentLine = bufferedReader.readLine();
+					currentComponents = currentLine.split(" ");
+					currentPlayer = Integer.parseInt(currentComponents[2]);
+		    			for (int i = 0; i < numPlayers; i++) {
 		    				currentLine = bufferedReader.readLine();
 						currentComponents = currentLine.split(" ");
 						
-						for (int j = 0; j < 5; j++) {
+						for (int j = 0; j < 4; j++) {
+							//4 porque é a QTD de informacoes a ser lida do aquivo
+							GamblerController current = gcs.get(i);
+							current.g = new Gambler(i);
 							switch (currentComponents[0]) {
 							case "Chips":
-								currentGambler.setPlayerChips(Integer.parseInt(currentComponents[1]));;
+								current.g.totalMoneyAvailable = (Integer.parseInt(currentComponents[1]));
 								break;
-								
 							case "Bet":
-								currentGambler.setPlayerBet(Integer.parseInt(currentComponents[1]));
+								current.g.setTotalMoneyBetted(Integer.parseInt(currentComponents[1]));
 								break;
 								
 							case "Points":
-								currentGambler.setPlayerPoints(Integer.parseInt(currentComponents[1]));
+								 if (currentComponents[1].indexOf('/') > 0) {
+						    		    String [] bothPoints = currentComponents[1].split("/");
+						    		    current.g.setTotalPoints(Integer.parseInt(bothPoints[0]));
+						    		    current.g.setTotalPointsWithAce(Integer.parseInt(bothPoints[1]));
+						         }
+						    	    else {
+						    	    		current.g.setTotalPoints(Integer.parseInt(currentComponents[1]));
+						    	    }
 								break;
 								
-							case "State":
-								currentGambler.setPlayerState(PlayerState.getStateWith(Integer.parseInt(currentComponents[1])));
-								break;
-								
-							case "Cards":
-								ArrayList<Card> cards = new ArrayList<Card>();
-								
+							case "Cards":								
 								for(int k = 1; k < currentComponents.length; k += 2) {
-									Card newCard = new Card(Suit.getSuitWith(currentComponents[k + 1]), Integer.parseInt(currentComponents[k]));
-									cards.add(newCard);
-									
+									Card newCard = new Card(currentComponents[k + 1],currentComponents[k]);
+									current.g.playerCards.add(newCard);
 					    				deck.remove(newCard);
 								}
-								
-								currentGambler.setPlayerCards(cards);
 								break;
 								
-							default:
-				    				System.out.println("GameController : retrieveSavedGame : invalid content");
-				    				System.exit(1);
+						//	default:
+				    	//			System.out.println("GameController : retrieveSavedGame : invalid content");
+				    	//			System.exit(1);
 							}
 							
 							currentLine = bufferedReader.readLine();
 							currentComponents = currentLine.split(" ");
+							current.updateUIAfterLoad();
 						}
 		    			}
 		    			
@@ -448,7 +466,7 @@ public class GameController implements ObservadorIF{
 			System.out.println("GameController : retrieveSavedGame : error = " + e.getMessage());
 			System.exit(1);			
 		}
-		
+		/*
 		updateUI();		
 		
 		boolean isEndOfRound = true;
@@ -467,4 +485,5 @@ public class GameController implements ObservadorIF{
 	}
 	*/
 	
+	}
 }

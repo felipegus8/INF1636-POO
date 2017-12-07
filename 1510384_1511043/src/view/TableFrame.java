@@ -93,7 +93,7 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 		this.p.add(saveGame);
 		setSize(LARG_DEFAULT,ALT_DEFAULT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("Table");
+		this.setTitle("Dealer");
 		this.setVisible(true);		
 		
 	}
