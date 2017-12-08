@@ -195,6 +195,11 @@ public class GamblerController {
 		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
 	}
 	
+	public void buyChip(int value) {
+		g.buyChip(value);
+		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
+	}
+	
 	public void clearCurrentBet() {
 		this.g.clearCurrentBet();
 		this.gf.alterCurrentBetLabel(0);
@@ -220,14 +225,26 @@ public class GamblerController {
 		this.gf.alterTotalMoneyLabel(g.totalMoneyAvailable);
 	}
 	
+	public void playerLost() {
+		if(g.totalMoneyAvailable <= 0) {
+			gf.buyChips.setEnabled(true);
+			gf.bet.setEnabled(false);
+		}
+	}
+	
 	public void didFinishBet() {
 		if(g.totalBetted() > 0) {
-			System.out.println("time to cry");
 			gf.bet.setEnabled(false);
 			decideWhoPlaysNext();
 		}
 	}
 	
+	public void didFinishBuy() {
+		if(g.totalMoneyAvailable > 0) {
+			gf.buyChips.setEnabled(false);
+			decideWhoPlaysNext();
+		}
+	}
 	public void playerSurrendered() {
 		gc.surrenderPlayer(g.numGambler);
 	}

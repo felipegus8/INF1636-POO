@@ -31,7 +31,7 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	private ArrayList<ObservadorIF> observers = new ArrayList<ObservadorIF>();
 
 	public TableFramePanel p = null;
-	private JButton restart = new JButton("RESTART");
+	private JButton restart = new JButton("Next Round");
 	private JButton saveGame = new JButton("SAVE");
 	public JLabel cardValue = new JLabel("0");
 	public GameController g = null;

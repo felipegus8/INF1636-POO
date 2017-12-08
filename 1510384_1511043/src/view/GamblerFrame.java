@@ -30,7 +30,7 @@ public class GamblerFrame extends JFrame{
 	public JLabel cardValue = new JLabel("0");
 	public JLabel stopHit = new JLabel("BUSTED");
 	public JLabel checkResultWinLose = new JLabel ("You Won");
-	public JLabel totalCoinsGambler = new JLabel("Total Money:10000");
+	public JLabel totalCoinsGambler = new JLabel("Total Money:100");
 	public JLabel totalMoneyBetted = new JLabel("Money Betted:0");
 	public GamblerPanel p = new GamblerPanel();
 	public GamblerController gc = null;
@@ -44,6 +44,7 @@ public class GamblerFrame extends JFrame{
 		doubleBet.setEnabled(false);
 		Point po = new Point((int) posX,(int) posY);
 		checkResultWinLose.setVisible(false);
+		buyChips.setEnabled(false);
 		hit.addActionListener(new ActionListener() {
 
 			@Override
@@ -128,7 +129,9 @@ public class GamblerFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Aqui avisar que acabou de comprar as fichas.				  
+				//Aqui avisar que acabou de comprar as fichas.	
+				gc.didFinishBuy();
+			
 			}
 			
 		});

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Gambler extends Player{
-	public int totalMoneyAvailable = 10000;
+	public int totalMoneyAvailable = 100;
 	public int numGambler;
 	private ArrayList<Chip> betChips = new ArrayList<Chip>();
 	
@@ -23,6 +23,10 @@ public class Gambler extends Player{
 		} else {
 			System.out.println("i'm afraid i can't let you do that");
 		}
+	}
+	
+	public void buyChip(int value) {
+		this.totalMoneyAvailable += value;
 	}
 	
 	public int totalBetted() {

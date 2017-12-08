@@ -139,6 +139,7 @@ public class GameController implements ObservadorIF{
 				//NOT A DRAW HERE.PLAYER LOSES IF BOTH ARE BUSTED.
 		//		c.gf.checkResultWinLose.setText("Draw");
 		//		c.gf.addDidWonOrLostLabel();
+				c.playerLost();
 			} else if(dc.checkIfPlayerWasBusted()) {
 				c.gf.checkResultWinLose.setText("You Won");
 				c.playerWon();
@@ -146,6 +147,7 @@ public class GameController implements ObservadorIF{
 				//player wins
 			} else if(c.checkIfPlayerWasBusted()){
 				//dealer wins
+				c.playerLost();
 			} else {
 				if(c.totalPointsFinal() > dc.totalPoints()) {
 					//player wins
@@ -154,6 +156,7 @@ public class GameController implements ObservadorIF{
 					c.gf.addDidWonOrLostLabel();
 				} else if(c.totalPointsFinal() < dc.totalPoints()) {
 					//dealer wins
+					c.playerLost();
 					c.gf.checkResultWinLose.setText("You Lost");
 					c.gf.addDidWonOrLostLabel();
 				} else {
@@ -260,7 +263,12 @@ public class GameController implements ObservadorIF{
 	@Override
 	public void update(int valor, Object obj) {
 		GamblerController c = gcs.get(this.currentPlayer - 1);
+		if(c.gf.buyChips.isEnabled()) {
+			c.buyChip(valor);
+		}
+		else {
 		c.betChip(valor);	
+		}
 	}	
 	
 	
