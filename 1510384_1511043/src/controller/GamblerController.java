@@ -258,7 +258,7 @@ public class GamblerController {
 		gf.disableBetButton();
 	}
 	
-	public void updateUIAfterLoad() {
+	public void updateGamblerUI() {
 		
 		gf.totalCoinsGambler.setText("Total Money:" + String.valueOf(g.totalMoneyAvailable));
 		gf.totalMoneyBetted.setText("Money Betted:" + String.valueOf(g.getTotalMoneyBetted()));

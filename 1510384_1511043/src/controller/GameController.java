@@ -434,7 +434,7 @@ public class GameController implements ObservadorIF{
 								}
 								break;
 							}
-							current.updateUIAfterLoad();
+							current.updateGamblerUI();
 							currentLine = reader.readLine();
 							lineComp = currentLine.split(" ");
 						}
