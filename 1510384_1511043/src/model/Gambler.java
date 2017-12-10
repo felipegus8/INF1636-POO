@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Gambler extends Player{
-	public int totalMoneyAvailable = 100;
+	public int totalMoneyAvailable = 1000;
 	public int numGambler;
 	private ArrayList<Chip> betChips = new ArrayList<Chip>();
 	

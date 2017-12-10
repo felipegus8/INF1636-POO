@@ -125,6 +125,10 @@ public class GameController implements ObservadorIF{
 		}
 	}
 	
+	public int getCurrentPlayer() {
+		return this.currentPlayer;
+	}
+	
 	public void blockAllPlayers() {
 		for(int i=0;i<numPlayers;i++) {	
 			GamblerController c = gcs.get(i);
@@ -281,20 +285,20 @@ public class GameController implements ObservadorIF{
 			writer.printf("Dealer");
 			writer.println();
 			if (dc.checkIfPlayerHasAce() && !dc.checkIfAceMaxBusts()) {
-				writer.printf("Points  "+ dc.totalPoints() + "/" + dc.totalPointsWithAce());
+				writer.printf("Points "+ dc.totalPoints() + "/" + dc.totalPointsWithAce());
 			}
 			else {
 			writer.printf("Points " + dc.totalPoints());
 			}
 			writer.println();
-			writer.printf("Cards");
+			writer.printf("Cards ");
 			for(Card card : dc.d.playerCards) {
 				System.out.println(card.cardNumber);
-				if (card.cardNumber < 10) {
-				writer.printf(" " + card.cardNumber + " " + card.suit);
+				if (card.cardNumber < 10 && card.cardNumber != 1) {
+				writer.printf(card.cardNumber + " " + card.suit + " ");
 				}
 				else {
-					writer.printf(" " + card.cardName + " " + card.suit);
+					writer.printf(card.cardName + " " + card.suit + " ");
 				}
 			}
 			
@@ -307,6 +311,7 @@ public class GameController implements ObservadorIF{
 			writer.println();
 			writer.printf("Current Player " + currentPlayer);
 			writer.println();
+			writer.println("Current Round " + numRound);
 			for (GamblerController gambler: gcs) {				
 				writer.printf("Chips " + gambler.g.totalMoneyAvailable);
 				writer.println();
@@ -318,7 +323,7 @@ public class GameController implements ObservadorIF{
 				writer.println();
 				writer.printf("Cards");
 				for(Card card : gambler.g.playerCards) {
-					if (card.cardNumber < 10) {
+					if (card.cardNumber < 10 && card.cardNumber != 1) {
 						writer.printf(" " + card.cardNumber + " " + card.suit);
 						}
 						else {
@@ -328,8 +333,6 @@ public class GameController implements ObservadorIF{
 				writer.println();
 				writer.println();
 			}
-			
-			writer.printf("End");
 			writer.close();
 		} 
 		catch (IOException e) {
@@ -357,6 +360,7 @@ public class GameController implements ObservadorIF{
 		    		currentLine = bufferedReader.readLine();
 				currentComponents = currentLine.split(" ");
 				    if (currentComponents[0].compareTo("Points") == 0)  {
+				    		System.out.println("Got here");
 				    		tf.cardValue.setText(currentComponents[1]);
 				    	    if (currentComponents[1].indexOf('/') > 0) {
 				    		    String [] bothPoints = currentComponents[1].split("/");
@@ -364,7 +368,11 @@ public class GameController implements ObservadorIF{
 				    		    dc.d.setTotalPointsWithAce(Integer.parseInt(bothPoints[1]));
 				         }
 				    	    else {
+				    	    		System.out.println("Aqui" + currentComponents[0]);
+				    	    		System.out.println(currentComponents[1]);
+				    	    		System.out.println(currentComponents[2]);
 				    	    		dc.d.setTotalPoints(Integer.parseInt(currentComponents[1]));
+				    	    		dc.d.setTotalPointsWithAce(Integer.parseInt(currentComponents[1]));
 				    	    }
 				    }
 				    else
@@ -401,13 +409,19 @@ public class GameController implements ObservadorIF{
 		    			currentLine = bufferedReader.readLine();
 					currentComponents = currentLine.split(" ");
 					currentPlayer = Integer.parseInt(currentComponents[2]);
+					currentLine = bufferedReader.readLine();
+					currentComponents = currentLine.split(" ");
+					numRound = Integer.parseInt(currentComponents[2]);
 		    			for (int i = 0; i < numPlayers; i++) {
 		    				currentLine = bufferedReader.readLine();
 						currentComponents = currentLine.split(" ");
+						
 						GamblerController current = gcs.get(i);
-						current.g = new Gambler(i);
+						current.g = new Gambler(i + 1);
+							System.out.println("AQUI FOI");
 						for (int j = 0; j < 4; j++) {
 							//4 porque é a QTD de informacoes a ser lida do aquivo
+							System.out.println(currentComponents[0]);
 							switch (currentComponents[0]) {
 							case "Chips":
 								current.g.totalMoneyAvailable = (Integer.parseInt(currentComponents[1]));
@@ -424,17 +438,21 @@ public class GameController implements ObservadorIF{
 						         }
 						    	    else {
 						    	    		current.g.setTotalPoints(Integer.parseInt(currentComponents[1]));
+						    	    		current.g.setTotalPointsWithAce(Integer.parseInt(currentComponents[1]));
 						    	    }
 								break;
 								
-							case "Cards":								
+							case "Cards":							
+								System.out.println("Chegou em card ");
 								for(int k = 1; k < currentComponents.length; k += 2) {
 									Card newCard = new Card(currentComponents[k + 1],currentComponents[k]);
+									System.out.println("Colocando carta no array " + newCard.cardNumber);
 									current.g.playerCards.add(newCard);
 					    				deck.remove(newCard);
 								}
 								break;
 							}
+							System.out.println("Chegou aqui");
 							current.updateUIAfterLoad();
 							currentLine = bufferedReader.readLine();
 							currentComponents = currentLine.split(" ");
@@ -457,24 +475,7 @@ public class GameController implements ObservadorIF{
 			System.out.println("GameController : retrieveSavedGame : error = " + e.getMessage());
 			System.exit(1);			
 		}
-		/*
-		updateUI();		
-		
-		boolean isEndOfRound = true;
-		for (int i = 0; i < numberOfPlayers; i++) {
-			gamblersControllers.get(i).updateUI();
-			
-			PlayerState playerState = gamblersControllers.get(i).getPlayerState();
-			isEndOfRound = playerState != PlayerState.Playing || playerState != PlayerState.Waiting;
-		}
-		
-		if (gamblersControllers.get(0).getPlayerState() == PlayerState.Betting)
-			nextPlayerToBet();
-		
-		if (isEndOfRound)
-			tableView.showResetOption();
-	}
-	*/
+
 	
 	}
 }

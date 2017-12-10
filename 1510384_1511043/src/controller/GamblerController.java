@@ -84,6 +84,7 @@ public class GamblerController {
 		}
 		
 		if (drawed.cardNumber == 1) {
+		drawed.cardName = 'A';
 		g.addPoint(drawed);
 		}
 		else {
@@ -258,11 +259,10 @@ public class GamblerController {
 	}
 	
 	public void updateUIAfterLoad() {
-		System.out.println(getCorrectTextForCardValue());
-		gf.cardValue.setText(getCorrectTextForCardValue());
-		gf.cardValue.validate();
+		
 		gf.totalCoinsGambler.setText("Total Money:" + String.valueOf(g.totalMoneyAvailable));
 		gf.totalMoneyBetted.setText("Money Betted:" + String.valueOf(g.getTotalMoneyBetted()));
+		System.out.println(g.playerCards);
 		for (Card c:g.playerCards) {
 			String s = null,n = null;
 			switch (c.suit) {
@@ -279,14 +279,52 @@ public class GamblerController {
 				s = "c";
 				break;
 			}
-			if (c.cardNumber < 10) {
+			if (c.cardNumber < 10 && c.cardNumber != 1) {
 				n = String.valueOf(c.cardNumber);
 			}
 			else {
 				n = String.valueOf(c.cardName);
 			}
 		String cardImage =  n + s;
+		System.out.println("Vai dar print na imagem "+ cardImage);
 		gf.p.paintCard(cardImage);
+		gf.p.validate();
+		}
+		
+		if(g.numGambler == gc.getCurrentPlayer()) {
+			gf.hit.setEnabled(true);
+			gf.stand.setEnabled(true);
+			gf.doubleBet.setEnabled(true);
+			System.out.println(getCorrectTextForCardValue());
+			gf.cardValue.setText(getCorrectTextForCardValue());
+			gf.cardValue.validate();
+		}
+		else if (g.numGambler > gc.getCurrentPlayer()) {
+			gf.hit.setEnabled(false);
+			gf.stand.setEnabled(false);
+			gf.doubleBet.setEnabled(false);
+			gf.isStanded = false;
+			System.out.println(getCorrectTextForCardValue());
+			gf.cardValue.setText(getCorrectTextForCardValue());
+			gf.cardValue.validate();
+		}
+		else {
+			gf.isStanded = true;
+			if (this.checkIfPlayerHasAce() && !this.checkIfAceMaxBusts()) {
+				gf.cardValue.setText(String.valueOf(this.totalPointsWithAce()));
+			}
+			else {
+				gf.cardValue.setText(String.valueOf(this.totalPoints()));
+			}
+			if(this.checkIfPlayerWasBusted()) {
+				gf.stopHit.setVisible(true);
+				gf.p.add(gf.stopHit);
+			}
+			
+			gf.hit.setEnabled(false);
+			gf.stand.setEnabled(false);
+			gf.doubleBet.setEnabled(false);
+			
 		}
 	}
 }

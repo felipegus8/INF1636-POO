@@ -42,10 +42,25 @@ public class DealerController {
 		Card drawed = gc.drawCard();
 
 		if (drawed.cardNumber == 1) {
+			drawed.cardName = 'A';
 			d.addPoint(drawed);
 			}
 			else {
-				if (drawed.cardNumber > 10) {
+				if (drawed.cardNumber >= 10) {
+					switch (drawed.cardNumber) {
+					case 10:
+						drawed.cardName = 'T';
+						break;
+					case 11:
+						drawed.cardName = 'J';
+						break;
+					case 12:
+						drawed.cardName = 'Q';
+						break;
+					case 13:
+						drawed.cardName = 'K';
+						break;
+					}
 					drawed.cardNumber = 10;
 				}
 				d.addPoint(drawed);
@@ -191,7 +206,7 @@ public class DealerController {
 				s = "c";
 				break;
 			}
-			if (c.cardNumber < 10) {
+			if (c.cardNumber < 10 && c.cardNumber != 1) {
 				n = String.valueOf(c.cardNumber);
 			}
 			else {

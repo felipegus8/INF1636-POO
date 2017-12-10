@@ -43,6 +43,8 @@ public class FirstScreen extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				g.insertCards();
+				g.shuffleCards();
 				g.retrieveSavedGame("save.txt");
 			}
 		});

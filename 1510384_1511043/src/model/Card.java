@@ -30,6 +30,10 @@ public class Card {
 			this.cardNumber = 10;
 			this.cardName = cardNumberNew.charAt(0);
 		}
+		else if (cardNumberNew.equals("A")) {
+			this.cardNumber = 1;
+			this.cardName = 'A';
+		}
 		else {
 			this.cardNumber = Integer.valueOf(cardNumberNew);
 			this.cardName = cardNumberNew.charAt(0);

@@ -30,7 +30,7 @@ public class GamblerFrame extends JFrame{
 	public JLabel cardValue = new JLabel("0");
 	public JLabel stopHit = new JLabel("BUSTED");
 	public JLabel checkResultWinLose = new JLabel ("You Won");
-	public JLabel totalCoinsGambler = new JLabel("Total Money:100");
+	public JLabel totalCoinsGambler = new JLabel("Total Money:1000");
 	public JLabel totalMoneyBetted = new JLabel("Money Betted:0");
 	public GamblerPanel p = new GamblerPanel();
 	public GamblerController gc = null;
@@ -62,6 +62,7 @@ public class GamblerFrame extends JFrame{
 					p.add(stopHit);
 					hit.setEnabled(false);
 					stand.setEnabled(false);
+					doubleBet.setEnabled(false);
 					gc.decideWhoPlaysNext();
 				}
 			}
