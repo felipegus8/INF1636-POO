@@ -45,7 +45,7 @@ public class FirstScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				g.insertCards();
 				g.shuffleCards();
-				g.retrieveSavedGame("save.txt");
+				g.retrieveGame("save.txt");
 			}
 		});
 		

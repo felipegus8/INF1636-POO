@@ -16,7 +16,6 @@ public class Gambler extends Player{
 			if(this.totalBetted() + value <= 100) {
 				this.totalMoneyAvailable -= value;
 				this.betChips.add(new Chip(value));
-				System.out.println("value " + value);
 			} else {
 				System.out.println("i'm afraid i can't let you do that");
 			}

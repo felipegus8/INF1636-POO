@@ -262,7 +262,6 @@ public class GamblerController {
 		
 		gf.totalCoinsGambler.setText("Total Money:" + String.valueOf(g.totalMoneyAvailable));
 		gf.totalMoneyBetted.setText("Money Betted:" + String.valueOf(g.getTotalMoneyBetted()));
-		System.out.println(g.playerCards);
 		for (Card c:g.playerCards) {
 			String s = null,n = null;
 			switch (c.suit) {
@@ -286,25 +285,31 @@ public class GamblerController {
 				n = String.valueOf(c.cardName);
 			}
 		String cardImage =  n + s;
-		System.out.println("Vai dar print na imagem "+ cardImage);
 		gf.p.paintCard(cardImage);
 		gf.p.validate();
 		}
 		
 		if(g.numGambler == gc.getCurrentPlayer()) {
+			if (gc.numRound == 1) {
+				gf.bet.setEnabled(true);
+				gf.hit.setEnabled(false);
+				gf.stand.setEnabled(false);
+				gf.doubleBet.setEnabled(false);
+			}
+			else {
+			gf.bet.setEnabled(false);
 			gf.hit.setEnabled(true);
 			gf.stand.setEnabled(true);
 			gf.doubleBet.setEnabled(true);
-			System.out.println(getCorrectTextForCardValue());
 			gf.cardValue.setText(getCorrectTextForCardValue());
 			gf.cardValue.validate();
+			}
 		}
 		else if (g.numGambler > gc.getCurrentPlayer()) {
 			gf.hit.setEnabled(false);
 			gf.stand.setEnabled(false);
 			gf.doubleBet.setEnabled(false);
 			gf.isStanded = false;
-			System.out.println(getCorrectTextForCardValue());
 			gf.cardValue.setText(getCorrectTextForCardValue());
 			gf.cardValue.validate();
 		}

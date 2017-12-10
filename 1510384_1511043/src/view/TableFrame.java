@@ -31,8 +31,8 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	private ArrayList<ObservadorIF> observers = new ArrayList<ObservadorIF>();
 
 	public TableFramePanel p = null;
-	private JButton restart = new JButton("Next Round");
-	private JButton saveGame = new JButton("SAVE");
+	public JButton restart = new JButton("Next Round");
+	public JButton saveGame = new JButton("SAVE");
 	public JLabel cardValue = new JLabel("0");
 	public GameController g = null;
 	
@@ -73,6 +73,7 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardValue.setVisible(false);
+				saveGame.setEnabled(true);
 				g.restartGame();		
 			}
 			
@@ -120,7 +121,6 @@ public class TableFrame extends JFrame implements MouseListener, ObservadoIF{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-	//	System.out.println("funcionou por algum motivo");
 		System.out.println(e.getX());
 		System.out.println(e.getY());
 		if (e.getX() > 750 && e.getX() < 800 && e.getY() > 220 && e.getY() < 274) {
