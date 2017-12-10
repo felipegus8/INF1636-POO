@@ -279,9 +279,6 @@ public class GameController implements ObservadorIF{
 	public void save(String filePath) {		
 		try {
 			PrintWriter file = new PrintWriter(filePath + ".txt", "UTF-8");
-			
-			// Store table
-			
 			file.printf("Dealer");
 			file.println();
 			if (dc.checkIfPlayerHasAce() && !dc.checkIfAceMaxBusts()) {
@@ -299,13 +296,9 @@ public class GameController implements ObservadorIF{
 				else {
 					file.printf(card.cardName + " " + card.suit + " ");
 				}
-			}
-			
+			}	
 			file.println();
 			file.println();
-			
-			// Store players
-			
 			file.printf("Gamblers " + numPlayers);
 			file.println();
 			file.printf("Current Player " + currentPlayer);
@@ -314,10 +307,8 @@ public class GameController implements ObservadorIF{
 			for (GamblerController gambler: gcs) {				
 				file.printf("Chips " + gambler.g.totalMoneyAvailable);
 				file.println();
-				
 				file.printf("Bet " + gambler.totalBetted());
 				file.println();
-				
 				file.printf("Points " + gambler.getCorrectTextForCardValue());
 				file.println();
 				file.printf("Cards");
